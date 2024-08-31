@@ -44,7 +44,7 @@ export default function PasswordSignIn({
               autoCapitalize="none"
               autoComplete="email"
               autoCorrect="off"
-              className="w-full p-3 rounded-md bg-zinc-800"
+              className="w-full p-3 rounded-md bg-zinc-800 border"
             />
             <label htmlFor="password">Password</label>
             <input
