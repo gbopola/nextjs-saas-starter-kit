@@ -9,9 +9,11 @@ import {
 } from '@headlessui/react';
 import { useState } from 'react';
 import { HiCog6Tooth, HiXMark } from 'react-icons/hi2';
+import useStore from '@/store/store';
 
 export default function DashboardMobileNav() {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const { sidebarOpen, setSidebarOpen } = useStore();
+
   return (
     <Dialog
       open={sidebarOpen}
@@ -32,7 +34,7 @@ export default function DashboardMobileNav() {
             <div className="absolute left-full top-0 flex w-16 justify-center pt-5 duration-300 ease-in-out data-[closed]:opacity-0">
               <button
                 type="button"
-                onClick={() => setSidebarOpen(false)}
+                onClick={setSidebarOpen}
                 className="-m-2.5 p-2.5"
               >
                 <span className="sr-only">Close sidebar</span>

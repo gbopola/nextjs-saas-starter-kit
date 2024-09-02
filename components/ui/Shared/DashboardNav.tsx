@@ -1,4 +1,5 @@
 import { navigation, teams } from '@/config/dashboard';
+import useStore from '@/store/store';
 import { classNames } from '@/utils/helpers';
 import { HiCog6Tooth } from 'react-icons/hi2';
 

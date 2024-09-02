@@ -1,14 +1,13 @@
+import useStore from '@/store/store';
 import { HiBars3 } from 'react-icons/hi2';
 
-type HamburgerMenuProps = {
-  setSidebarOpen: (open: boolean) => void;
-};
+export default function HamburgerMenu() {
+  const { sidebarOpen, setSidebarOpen } = useStore();
 
-export default function HamburgerMenu({ setSidebarOpen }: HamburgerMenuProps) {
   return (
     <button
       type="button"
-      onClick={() => setSidebarOpen(true)}
+      onClick={setSidebarOpen}
       className="-m-2.5 p-2.5 text-gray-700 lg:hidden"
     >
       <span className="sr-only">Open sidebar</span>

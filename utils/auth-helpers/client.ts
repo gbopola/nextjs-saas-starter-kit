@@ -7,8 +7,8 @@ import { redirectToPath } from './server';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 
 export async function handleRequest(
-  data: any,
-  requestFunc: (formData: any) => Promise<string>,
+  data: Record<string, any>,
+  requestFunc: (formData: Record<string, any>) => Promise<string>,
   router: AppRouterInstance | null = null
 ): Promise<boolean | void> {
   // Prevent default form submission refresh
