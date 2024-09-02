@@ -1,3 +1,8 @@
+import {
+  DashboardMobileNav,
+  DashboardNav,
+  DashboardTopNav
+} from '@/components/ui/Shared';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
@@ -15,10 +20,16 @@ export default function DashboardLayout({
 }) {
   return (
     <div className={inter.className}>
-      {/* <main className="py-10">
-        <div className="px-4 sm:px-6 lg:px-8">{children}</div>
-      </main> */}
-      {children}
+      <DashboardMobileNav />
+      <DashboardNav />
+      <div className="lg:pl-72">
+        <div>
+          <DashboardTopNav />
+        </div>
+        <main className="py-10">
+          <div className="px-4 sm:px-6 lg:px-8">{children}</div>
+        </main>
+      </div>
     </div>
   );
 }

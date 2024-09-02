@@ -1,27 +1,17 @@
-import { Navigation, Team } from '@/types';
+'use client';
+import { navigation, teams } from '@/config/dashboard';
+import { classNames } from '@/utils/helpers';
 import {
   Dialog,
   DialogBackdrop,
   DialogPanel,
   TransitionChild
 } from '@headlessui/react';
+import { useState } from 'react';
 import { HiCog6Tooth, HiXMark } from 'react-icons/hi2';
 
-type DashboardMobileNavProps = {
-  navigation: Navigation[];
-  teams: Team[];
-  sidebarOpen: boolean;
-  setSidebarOpen: (open: boolean) => void;
-  classNames: (...classes: string[]) => string;
-};
-
-export default function DashboardMobileNav({
-  navigation,
-  teams,
-  sidebarOpen,
-  setSidebarOpen,
-  classNames
-}: DashboardMobileNavProps) {
+export default function DashboardMobileNav() {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   return (
     <Dialog
       open={sidebarOpen}

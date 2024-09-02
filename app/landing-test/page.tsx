@@ -1,16 +1,16 @@
-import SocialProof from '@/components/ui/SocialProof';
-import CTA from '@/components/ui/MarketingSections/CTA';
-import FAQ from '@/components/ui/MarketingSections/FAQ';
 import {
+  CTA,
+  FAQ,
   FeatureOne,
   FeatureThree,
-  FeatureTwo
-} from '@/components/ui/MarketingSections/Features';
-import Footer from '@/components/ui/MarketingSections/Footer';
-import Header from '@/components/ui/MarketingSections/Header';
-import Hero from '@/components/ui/MarketingSections/Hero';
-import PricingTest from '@/components/ui/Pricing/PricingTest';
-import Testimonials from '@/components/ui/Testimonials';
+  FeatureTwo,
+  Footer,
+  Header,
+  Hero,
+  PricingTest,
+  SocialProof,
+  Testimonials
+} from '@/components/ui/MarketingSections';
 
 export default function Example() {
   return (

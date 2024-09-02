@@ -1,17 +1,8 @@
-import { Navigation, Team } from '@/types';
+import { navigation, teams } from '@/config/dashboard';
+import { classNames } from '@/utils/helpers';
 import { HiCog6Tooth } from 'react-icons/hi2';
 
-type DashboardNavProps = {
-  navigation: Navigation[];
-  teams: Team[];
-  classNames: (...classes: string[]) => string;
-};
-
-export default function DashboardNav({
-  navigation,
-  teams,
-  classNames
-}: DashboardNavProps) {
+export default function DashboardNav() {
   return (
     <>
       {/* Static sidebar for desktop */}
