@@ -1,6 +1,4 @@
 import { Metadata } from 'next';
-import Footer from '@/components/ui/MarketingSections/Footer';
-import Navbar from '@/components/ui/Navbar';
 import { Toaster } from '@/components/ui/Toasts/toaster';
 import { PropsWithChildren, Suspense } from 'react';
 import { getURL } from '@/utils/helpers';
@@ -25,8 +23,8 @@ export default async function RootLayout({ children }: PropsWithChildren) {
       <body>
         {/* <Navbar /> */}
         <main
-          id="skip"
-          className="min-h-[calc(100dvh-4rem)] md:min-h[calc(100dvh-5rem)]"
+        // id="skip"
+        // className="min-h-[calc(100dvh-4rem)] md:min-h[calc(100dvh-5rem)]"
         >
           {children}
         </main>

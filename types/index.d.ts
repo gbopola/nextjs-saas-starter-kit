@@ -9,6 +9,21 @@ export type NavItem = {
   disabled?: boolean;
 };
 
+export type Team = {
+  id: number;
+  name: string;
+  href: string;
+  initial: string;
+  current: boolean;
+};
+
+export type Navigation = {
+  name: string;
+  href: string;
+  icon: any;
+  current: boolean;
+};
+
 export type MainNavItem = NavItem;
 
 export type SidebarNavItem = {

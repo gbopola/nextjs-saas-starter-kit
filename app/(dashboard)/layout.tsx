@@ -13,5 +13,12 @@ export default function DashboardLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <section className={inter.className}>{children}</section>;
+  return (
+    <div className={inter.className}>
+      {/* <main className="py-10">
+        <div className="px-4 sm:px-6 lg:px-8">{children}</div>
+      </main> */}
+      {children}
+    </div>
+  );
 }
