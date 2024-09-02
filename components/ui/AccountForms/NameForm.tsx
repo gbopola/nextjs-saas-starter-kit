@@ -19,7 +19,7 @@ export default function NameForm({ userName }: { userName: string }) {
       setIsSubmitting(false);
       return;
     }
-    // handleRequest(e, updateName, router);
+    handleRequest(e, updateName, router);
     setIsSubmitting(false);
   };
 

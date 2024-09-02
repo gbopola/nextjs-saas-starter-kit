@@ -312,7 +312,7 @@ export async function updateEmail(formData: Record<string, any>) {
   }
 }
 
-export async function updateName(formData: FormData) {
+export async function updateName(formData: Record<string, any>) {
   // Get form data
   const fullName = String(formData.get('fullName')).trim();
 
