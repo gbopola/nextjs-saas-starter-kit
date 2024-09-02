@@ -271,7 +271,7 @@ export async function updatePassword(formData: Record<string, any>) {
   return redirectPath;
 }
 
-export async function updateEmail(formData: FormData) {
+export async function updateEmail(formData: Record<string, any>) {
   // Get form data
   const newEmail = String(formData.get('newEmail')).trim();
 
