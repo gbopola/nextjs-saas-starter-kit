@@ -5,7 +5,7 @@ import Button from '../../Button';
 import { marketingConfig } from '@/config/marketing';
 import { HiBars3, HiXMark } from 'react-icons/hi2';
 import Link from 'next/link';
-import s from '../Navbar/Navbar.module.css';
+import s from '../../Navbar/Navbar.module.css';
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
