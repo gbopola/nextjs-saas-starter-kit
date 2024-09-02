@@ -32,7 +32,7 @@ export async function SignOut(formData: FormData) {
   return '/signin';
 }
 
-export async function signInWithEmail(formData: FormData) {
+export async function signInWithEmail(formData: Record<string, any>) {
   const cookieStore = cookies();
   const callbackURL = getURL('/auth/callback');
 
