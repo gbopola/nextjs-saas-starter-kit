@@ -1,7 +1,7 @@
 'use client';
 import { Dialog } from '@headlessui/react';
 import { useState } from 'react';
-import Button from '../Button';
+import Button from '../../Button';
 import { marketingConfig } from '@/config/marketing';
 import { HiBars3, HiXMark } from 'react-icons/hi2';
 import Link from 'next/link';

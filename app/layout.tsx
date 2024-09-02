@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import Footer from '@/components/ui/Footer';
+import Footer from '@/components/ui/MarketingSections/Footer';
 import Navbar from '@/components/ui/Navbar';
 import { Toaster } from '@/components/ui/Toasts/toaster';
 import { PropsWithChildren, Suspense } from 'react';

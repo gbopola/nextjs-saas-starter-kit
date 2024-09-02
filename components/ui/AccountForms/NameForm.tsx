@@ -38,6 +38,9 @@ export default function NameForm({ userName }: { userName: string }) {
           >
             Update Name
           </Button>
+          {isSubmitting && (
+            <p className="text-sm text-gray-500">Updating name...</p>
+          )}
         </div>
       }
     >

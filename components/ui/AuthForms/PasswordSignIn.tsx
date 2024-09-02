@@ -1,11 +1,13 @@
 'use client';
-
 import Button from '@/components/ui/Button';
 import Link from 'next/link';
 import { signInWithPassword } from '@/utils/auth-helpers/server';
 import { handleRequest } from '@/utils/auth-helpers/client';
 import { useRouter } from 'next/navigation';
-import React, { useState } from 'react';
+import React from 'react';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { z } from 'zod';
 
 // Define prop type with allowEmail boolean
 interface PasswordSignInProps {
@@ -13,17 +15,32 @@ interface PasswordSignInProps {
   redirectMethod: string;
 }
 
+const schema = z.object({
+  email: z
+    .string()
+    .min(1, { message: 'Email is required' })
+    .email({ message: 'Invalid email address' }),
+  password: z.string().min(1, { message: 'Password is required' })
+});
+
+type FormFields = z.infer<typeof schema>;
+
 export default function PasswordSignIn({
   allowEmail,
   redirectMethod
 }: PasswordSignInProps) {
   const router = redirectMethod === 'client' ? useRouter() : null;
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    setIsSubmitting(true); // Disable the button while the request is being handled
-    await handleRequest(e, signInWithPassword, router);
-    setIsSubmitting(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting }
+  } = useForm<FormFields>({
+    resolver: zodResolver(schema)
+  });
+
+  const onSubmit: SubmitHandler<FormFields> = async (data) => {
+    await handleRequest(data, signInWithPassword, router);
   };
 
   return (
@@ -31,12 +48,13 @@ export default function PasswordSignIn({
       <form
         noValidate={true}
         className="mb-4"
-        onSubmit={(e) => handleSubmit(e)}
+        onSubmit={handleSubmit(onSubmit)}
       >
         <div className="grid gap-2">
           <div className="grid gap-1">
             <label htmlFor="email">Email</label>
             <input
+              {...register('email')}
               id="email"
               placeholder="name@example.com"
               type="email"
@@ -46,8 +64,12 @@ export default function PasswordSignIn({
               autoCorrect="off"
               className="w-full p-3 rounded-md bg-zinc-800 border"
             />
+            {errors.email && (
+              <p className="text-red-500">{errors.email.message}</p>
+            )}
             <label htmlFor="password">Password</label>
             <input
+              {...register('password')}
               id="password"
               placeholder="Password"
               type="password"
@@ -55,6 +77,9 @@ export default function PasswordSignIn({
               autoComplete="current-password"
               className="w-full p-3 rounded-md bg-zinc-800"
             />
+            {errors.password && (
+              <p className="text-red-500">{errors.password.message}</p>
+            )}
           </div>
           <Button
             variant="slim"

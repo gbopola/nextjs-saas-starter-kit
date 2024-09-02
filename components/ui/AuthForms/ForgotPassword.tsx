@@ -5,7 +5,9 @@ import Link from 'next/link';
 import { requestPasswordUpdate } from '@/utils/auth-helpers/server';
 import { handleRequest } from '@/utils/auth-helpers/client';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { z } from 'zod';
 
 // Define prop type with allowEmail boolean
 interface ForgotPasswordProps {
@@ -14,18 +16,32 @@ interface ForgotPasswordProps {
   disableButton?: boolean;
 }
 
+const schema = z.object({
+  email: z
+    .string()
+    .min(1, { message: 'Email is required' })
+    .email({ message: 'Invalid email address' })
+});
+
+type FormFields = z.infer<typeof schema>;
+
 export default function ForgotPassword({
   allowEmail,
   redirectMethod,
   disableButton
 }: ForgotPasswordProps) {
   const router = redirectMethod === 'client' ? useRouter() : null;
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    setIsSubmitting(true); // Disable the button while the request is being handled
-    await handleRequest(e, requestPasswordUpdate, router);
-    setIsSubmitting(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting }
+  } = useForm<FormFields>({
+    resolver: zodResolver(schema)
+  });
+
+  const onSubmit: SubmitHandler<FormFields> = async (data) => {
+    await handleRequest(data, requestPasswordUpdate, router);
   };
 
   return (
@@ -33,12 +49,13 @@ export default function ForgotPassword({
       <form
         noValidate={true}
         className="mb-4"
-        onSubmit={(e) => handleSubmit(e)}
+        onSubmit={handleSubmit(onSubmit)}
       >
         <div className="grid gap-2">
           <div className="grid gap-1">
             <label htmlFor="email">Email</label>
             <input
+              {...register('email')}
               id="email"
               placeholder="name@example.com"
               type="email"
@@ -48,6 +65,9 @@ export default function ForgotPassword({
               autoCorrect="off"
               className="w-full p-3 rounded-md bg-zinc-800"
             />
+            {errors.email && (
+              <p className="text-red-500">{errors.email.message}</p>
+            )}
           </div>
           <Button
             variant="slim"
@@ -60,11 +80,11 @@ export default function ForgotPassword({
           </Button>
         </div>
       </form>
-      <p>
+      {/* <p>
         <Link href="/signin/password_signin" className="font-light text-sm">
           Sign in with email and password
         </Link>
-      </p>
+      </p> */}
       {allowEmail && (
         <p>
           <Link href="/signin/email_signin" className="font-light text-sm">
@@ -72,11 +92,11 @@ export default function ForgotPassword({
           </Link>
         </p>
       )}
-      <p>
+      {/* <p>
         <Link href="/signin/signup" className="font-light text-sm">
           Don't have an account? Sign up
         </Link>
-      </p>
+      </p> */}
     </div>
   );
 }

@@ -86,11 +86,12 @@ export async function signInWithEmail(formData: FormData) {
   return redirectPath;
 }
 
-export async function requestPasswordUpdate(formData: FormData) {
+export async function requestPasswordUpdate(formData: { email: string }) {
   const callbackURL = getURL('/auth/reset_password');
 
+  const email = formData.email;
   // Get form data
-  const email = String(formData.get('email')).trim();
+  // const email = String(formData.get('email')).trim();
   let redirectPath: string;
 
   if (!isValidEmail(email)) {
@@ -131,10 +132,12 @@ export async function requestPasswordUpdate(formData: FormData) {
   return redirectPath;
 }
 
-export async function signInWithPassword(formData: FormData) {
+export async function signInWithPassword(formData: Record<string, string>) {
   const cookieStore = cookies();
-  const email = String(formData.get('email')).trim();
-  const password = String(formData.get('password')).trim();
+  // const email = String(formData.get('email')).trim();
+  // const password = String(formData.get('password')).trim();
+  const email = formData.email;
+  const password = formData.password;
   let redirectPath: string;
 
   const supabase = createClient();
@@ -163,11 +166,13 @@ export async function signInWithPassword(formData: FormData) {
   return redirectPath;
 }
 
-export async function signUp(formData: FormData) {
+export async function signUp(formData: Record<string, string>) {
   const callbackURL = getURL('/auth/callback');
 
-  const email = String(formData.get('email')).trim();
-  const password = String(formData.get('password')).trim();
+  // const email = String(formData.get('email')).trim();
+  // const password = String(formData.get('password')).trim();
+  const email = formData.email;
+  const password = formData.password;
   let redirectPath: string;
 
   if (!isValidEmail(email)) {
@@ -222,9 +227,11 @@ export async function signUp(formData: FormData) {
   return redirectPath;
 }
 
-export async function updatePassword(formData: FormData) {
-  const password = String(formData.get('password')).trim();
-  const passwordConfirm = String(formData.get('passwordConfirm')).trim();
+export async function updatePassword(formData: Record<string, string>) {
+  const password = formData.password;
+  const passwordConfirm = formData.confirmPassword;
+  // const password = String(formData.get('password')).trim();
+  // const passwordConfirm = String(formData.get('passwordConfirm')).trim();
   let redirectPath: string;
 
   // Check that the password and confirmation match

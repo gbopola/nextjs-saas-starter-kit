@@ -99,6 +99,7 @@ export default async function SignIn({
           )}
           {viewProp !== 'update_password' &&
             viewProp !== 'signup' &&
+            viewProp !== 'forgot_password' &&
             allowOauth && (
               <>
                 <Separator text="Third-party sign-in" />
