@@ -1,5 +1,5 @@
 'use client';
-import { navigation, teams } from '@/config/dashboard';
+import { dashboardConfig } from '@/config/dashboard';
 import { classNames } from '@/utils/helpers';
 import {
   Dialog,
@@ -55,7 +55,7 @@ export default function DashboardMobileNav() {
               <ul role="list" className="flex flex-1 flex-col gap-y-7">
                 <li>
                   <ul role="list" className="-mx-2 space-y-1">
-                    {navigation.map((item) => (
+                    {dashboardConfig.navigation.map((item) => (
                       <li key={item.name}>
                         <a
                           href={item.href}
@@ -86,7 +86,7 @@ export default function DashboardMobileNav() {
                     Your teams
                   </div>
                   <ul role="list" className="-mx-2 mt-2 space-y-1">
-                    {teams.map((team) => (
+                    {dashboardConfig.teams.map((team) => (
                       <li key={team.name}>
                         <a
                           href={team.href}

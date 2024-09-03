@@ -4,7 +4,7 @@ import DashboardNotifications from './DashboardNotifications';
 import DashboardProfileDropdown from './DashboardProfileDropdown';
 import DashboardSearch from './DashboardSearch';
 import HamburgerMenu from './HamburgerMenu';
-import { userNavigation } from '@/config/dashboard';
+import { dashboardConfig } from '@/config/dashboard';
 
 export default function DashboardTopNav() {
   return (
@@ -25,7 +25,9 @@ export default function DashboardTopNav() {
             className="hidden lg:block lg:h-6 lg:w-px lg:bg-gray-200"
           />
 
-          <DashboardProfileDropdown userNavigation={userNavigation} />
+          <DashboardProfileDropdown
+            userNavigation={dashboardConfig.userNavigation}
+          />
         </div>
       </div>
     </div>

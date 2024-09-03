@@ -1,5 +1,4 @@
-import { navigation, teams } from '@/config/dashboard';
-import useStore from '@/store/store';
+import { dashboardConfig } from '@/config/dashboard';
 import { classNames } from '@/utils/helpers';
 import { HiCog6Tooth } from 'react-icons/hi2';
 
@@ -21,7 +20,7 @@ export default function DashboardNav() {
             <ul role="list" className="flex flex-1 flex-col gap-y-7">
               <li>
                 <ul role="list" className="-mx-2 space-y-1">
-                  {navigation.map((item) => (
+                  {dashboardConfig.navigation.map((item) => (
                     <li key={item.name}>
                       <a
                         href={item.href}
@@ -52,7 +51,7 @@ export default function DashboardNav() {
                   Your teams
                 </div>
                 <ul role="list" className="-mx-2 mt-2 space-y-1">
-                  {teams.map((team) => (
+                  {dashboardConfig.teams.map((team) => (
                     <li key={team.name}>
                       <a
                         href={team.href}
