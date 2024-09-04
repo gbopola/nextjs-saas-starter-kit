@@ -20,18 +20,20 @@ export default function DashboardLayout({
 }) {
   return (
     <div className={inter.className}>
-      <DashboardMobileNav />
-      <DashboardNav />
-      <div className="lg:pl-72">
-        <div>
-          <DashboardTopNav />
-        </div>
-        {/* <main className="py-10">
+      <div>
+        <DashboardMobileNav />
+        <DashboardNav />
+        <div className="lg:pl-72">
+          <div>
+            <DashboardTopNav />
+          </div>
+          {/* <main className="py-10">
           <div className="px-4 sm:px-6 lg:px-8">{children}</div>
         </main> */}
-        <main>
-          <div>{children}</div>
-        </main>
+          <main className="py-10">
+            <div className="px-4 sm:px-6 lg:px-8">{children}</div>
+          </main>
+        </div>
       </div>
     </div>
   );

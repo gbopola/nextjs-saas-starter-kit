@@ -1,6 +1,6 @@
 'use client';
 import { dashboardConfig } from '@/config/dashboard';
-import { classNames } from '@/utils/helpers';
+import { classNames, currentPath } from '@/utils/helpers';
 import {
   Dialog,
   DialogBackdrop,
@@ -10,9 +10,13 @@ import {
 import { useState } from 'react';
 import { HiCog6Tooth, HiXMark } from 'react-icons/hi2';
 import useStore from '@/store/store';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 export default function DashboardMobileNav() {
   const { sidebarOpen, setSidebarOpen } = useStore();
+
+  const pathname = usePathname();
 
   return (
     <Dialog
@@ -57,10 +61,10 @@ export default function DashboardMobileNav() {
                   <ul role="list" className="-mx-2 space-y-1">
                     {dashboardConfig.navigation.map((item) => (
                       <li key={item.name}>
-                        <a
+                        <Link
                           href={item.href}
                           className={classNames(
-                            item.current
+                            currentPath(item.href) === currentPath(pathname)
                               ? 'bg-gray-50 text-indigo-600'
                               : 'text-gray-700 hover:bg-gray-50 hover:text-indigo-600',
                             'group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6'
@@ -69,51 +73,19 @@ export default function DashboardMobileNav() {
                           <item.icon
                             aria-hidden="true"
                             className={classNames(
-                              item.current
+                              currentPath(item.href) === currentPath(pathname)
                                 ? 'text-indigo-600'
                                 : 'text-gray-400 group-hover:text-indigo-600',
                               'h-6 w-6 shrink-0'
                             )}
                           />
                           {item.name}
-                        </a>
+                        </Link>
                       </li>
                     ))}
                   </ul>
                 </li>
-                <li>
-                  <div className="text-xs font-semibold leading-6 text-gray-400">
-                    Your teams
-                  </div>
-                  <ul role="list" className="-mx-2 mt-2 space-y-1">
-                    {dashboardConfig.teams.map((team) => (
-                      <li key={team.name}>
-                        <a
-                          href={team.href}
-                          className={classNames(
-                            team.current
-                              ? 'bg-gray-50 text-indigo-600'
-                              : 'text-gray-700 hover:bg-gray-50 hover:text-indigo-600',
-                            'group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6'
-                          )}
-                        >
-                          <span
-                            className={classNames(
-                              team.current
-                                ? 'border-indigo-600 text-indigo-600'
-                                : 'border-gray-200 text-gray-400 group-hover:border-indigo-600 group-hover:text-indigo-600',
-                              'flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border bg-white text-[0.625rem] font-medium'
-                            )}
-                          >
-                            {team.initial}
-                          </span>
-                          <span className="truncate">{team.name}</span>
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </li>
-                <li className="mt-auto">
+                {/* <li className="mt-auto">
                   <a
                     href="#"
                     className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50 hover:text-indigo-600"
@@ -124,7 +96,7 @@ export default function DashboardMobileNav() {
                     />
                     Settings
                   </a>
-                </li>
+                </li> */}
               </ul>
             </nav>
           </div>

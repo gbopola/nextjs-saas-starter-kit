@@ -2,7 +2,7 @@ import { HiMagnifyingGlass } from 'react-icons/hi2';
 
 export default function DashboardSearch() {
   return (
-    <form action="#" method="GET" className="relative flex flex-1">
+    <form action="#" method="GET" className="relative flex flex-1 invisible">
       <label htmlFor="search-field" className="sr-only">
         Search
       </label>

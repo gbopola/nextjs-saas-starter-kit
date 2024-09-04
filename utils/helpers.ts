@@ -135,3 +135,6 @@ export const getErrorRedirect = (
 export function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ');
 }
+
+//  get last part of pathname
+export const currentPath = (pathname: string) => pathname.split('/').pop();
