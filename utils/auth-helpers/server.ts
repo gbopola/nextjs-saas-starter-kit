@@ -147,17 +147,13 @@ export async function signInWithPassword(formData: Record<string, string>) {
   });
 
   if (error) {
-    redirectPath = getErrorRedirect(
-      '/signin/password_signin',
-      'Sign in failed.',
-      error.message
-    );
+    redirectPath = getErrorRedirect('/login', 'Sign in failed.', error.message);
   } else if (data.user) {
-    cookieStore.set('preferredSignInView', 'password_signin', { path: '/' });
+    cookieStore.set('preferredSignInView', 'login', { path: '/' });
     redirectPath = getStatusRedirect('/', 'Success!', 'You are now signed in.');
   } else {
     redirectPath = getErrorRedirect(
-      '/signin/password_signin',
+      '/login',
       'Hmm... Something went wrong.',
       'You could not be signed in.'
     );
