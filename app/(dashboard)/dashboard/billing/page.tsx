@@ -21,12 +21,14 @@ const BillingPage = () => {
             </p>
           </div>
           <div className="flex items-center justify-between mt-5">
-            <button
-              type="button"
-              className="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-            >
-              Change plan
-            </button>
+            <a href="https://billing.stripe.com/p/login/test_00g6oF0Id9Um1mU288">
+              <button
+                type="button"
+                className="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+              >
+                Change plan
+              </button>
+            </a>
             <p className="mt-2 text-sm text-gray-500">
               Your plan renews on January 8, 2024.
             </p>

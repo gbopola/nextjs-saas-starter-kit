@@ -2,7 +2,7 @@
 
 import OauthSignIn from '@/components/ui/AuthForms/OauthSignIn';
 import { handleRequest } from '@/utils/auth-helpers/client';
-import { signInWithPassword } from '@/utils/auth-helpers/server';
+import { signInWithPassword, signUp } from '@/utils/auth-helpers/server';
 import { getUser } from '@/utils/supabase/queries';
 import { createClient } from '@/utils/supabase/server';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -23,12 +23,14 @@ const schema = z.object({
     .string()
     .min(1, { message: 'Email is required' })
     .email({ message: 'Not a valid email address' }),
-  password: z.string().min(1, { message: 'Password is required' })
+  password: z
+    .string()
+    .min(6, { message: 'Password must be at least 6 characters' })
 });
 
 type FormFields = z.infer<typeof schema>;
 
-export default function Login({ redirectMethod }: PasswordSignInProps) {
+export default function Register({ redirectMethod }: PasswordSignInProps) {
   const router = redirectMethod === 'client' ? useRouter() : null;
 
   const {
@@ -40,7 +42,7 @@ export default function Login({ redirectMethod }: PasswordSignInProps) {
   });
 
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
-    await handleRequest(data, signInWithPassword, router);
+    await handleRequest(data, signUp, router);
   };
 
   return (
@@ -61,7 +63,7 @@ export default function Login({ redirectMethod }: PasswordSignInProps) {
           className="mx-auto h-10 w-auto"
         />
         <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-          Sign in to your account
+          Register an account
         </h2>
       </div>
 
@@ -174,7 +176,7 @@ export default function Login({ redirectMethod }: PasswordSignInProps) {
                 type="submit"
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
-                Sign in
+                Sign up
               </button>
             </div>
           </form>
@@ -201,12 +203,12 @@ export default function Login({ redirectMethod }: PasswordSignInProps) {
         </div>
 
         <p className="mt-10 text-center text-sm text-gray-500">
-          Don't have an account?{' '}
+          Already have an account?{' '}
           <Link
-            href="/register"
+            href="/login"
             className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
           >
-            Sign up
+            Sign in
           </Link>
         </p>
       </div>

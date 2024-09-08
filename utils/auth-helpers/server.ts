@@ -16,7 +16,7 @@ export async function redirectToPath(path: string) {
 }
 
 export async function SignOut(formData: Record<string, any>) {
-  const pathName = String(formData.get('pathName')).trim();
+  const pathName = formData.pathName;
 
   const supabase = createClient();
   const { error } = await supabase.auth.signOut();
@@ -29,7 +29,7 @@ export async function SignOut(formData: Record<string, any>) {
     );
   }
 
-  return '/signin';
+  return '/login';
 }
 
 export async function signInWithEmail(formData: Record<string, any>) {
@@ -173,7 +173,7 @@ export async function signUp(formData: Record<string, string>) {
 
   if (!isValidEmail(email)) {
     redirectPath = getErrorRedirect(
-      '/signin/signup',
+      '/register',
       'Invalid email address.',
       'Please try again.'
     );
@@ -190,7 +190,7 @@ export async function signUp(formData: Record<string, string>) {
 
   if (error) {
     redirectPath = getErrorRedirect(
-      '/signin/signup',
+      '/register',
       'Sign up failed.',
       error.message
     );

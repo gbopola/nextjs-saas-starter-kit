@@ -1,4 +1,9 @@
+'use client';
+import { handleRequest } from '@/utils/auth-helpers/client';
+import { SignOut } from '@/utils/auth-helpers/server';
+import { getRedirectMethod } from '@/utils/auth-helpers/settings';
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
+import { usePathname, useRouter } from 'next/navigation';
 import { HiChevronDown } from 'react-icons/hi2';
 
 type UserNavigation = {
@@ -11,6 +16,13 @@ export default function DashboardProfileDropdown({
 }: {
   userNavigation: UserNavigation[];
 }) {
+  const router = getRedirectMethod() === 'client' ? useRouter() : null;
+  const path = usePathname();
+
+  const pathObj = {
+    pathName: path
+  };
+
   return (
     <>
       {/* Profile dropdown */}
@@ -42,7 +54,7 @@ export default function DashboardProfileDropdown({
           {userNavigation.map((item: UserNavigation) => (
             <MenuItem key={item.name}>
               <a
-                href={item.href}
+                onClick={() => handleRequest(pathObj, SignOut, router)}
                 className="block px-3 py-1 text-sm leading-6 text-gray-900 data-[focus]:bg-gray-50"
               >
                 {item.name}
