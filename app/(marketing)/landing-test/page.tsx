@@ -5,7 +5,6 @@ import {
   FeatureThree,
   FeatureTwo,
   Footer,
-  Header,
   Hero,
   PricingTest,
   SocialProof,
@@ -15,7 +14,6 @@ import {
 export default function Example() {
   return (
     <div>
-      <Header />
       <Hero />
       <SocialProof />
       <FeatureOne />

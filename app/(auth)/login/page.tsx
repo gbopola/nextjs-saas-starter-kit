@@ -12,14 +12,6 @@ export default async function LoginPage() {
   }
   return (
     <>
-      {/*
-          This example requires updating your template:
-  
-          ```
-          <html class="h-full bg-gray-50">
-          <body class="h-full">
-          ```
-        */}
       <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8">
         <Login redirectMethod="client" />
       </div>

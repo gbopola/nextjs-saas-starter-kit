@@ -12,6 +12,9 @@ import { redirect, useRouter } from 'next/navigation';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { HiExclamationCircle } from 'react-icons/hi2';
 import { z } from 'zod';
+import Input from '../Input';
+import Label from '../Label';
+import Button from '../Button';
 
 // Define prop type with allowEmail boolean
 interface PasswordSignInProps {
@@ -75,28 +78,15 @@ export default function Register({ redirectMethod }: PasswordSignInProps) {
             onSubmit={handleSubmit(onSubmit)}
           >
             <div>
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium leading-6 text-gray-900"
-              >
-                Email
-              </label>
+              <Label htmlFor="email">Email</Label>
               <div className="relative mt-2 rounded-md shadow-sm">
-                <input
+                <Input
                   {...register('email')}
                   id="email"
                   name="email"
                   type="email"
                   placeholder="you@example.com"
-                  aria-invalid={errors.email ? 'true' : 'false'}
-                  aria-describedby="email-error"
-                  className={clsx(
-                    'block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6',
-                    {
-                      'ring-red-300 focus:ring-red-500 focus:ring-1 text-red-900':
-                        errors.email
-                    }
-                  )}
+                  variant={errors.email && 'error'}
                 />
                 {errors.email && (
                   <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
@@ -119,27 +109,14 @@ export default function Register({ redirectMethod }: PasswordSignInProps) {
             </div>
 
             <div>
-              <label
-                htmlFor="password"
-                className="block text-sm font-medium leading-6 text-gray-900"
-              >
-                Password
-              </label>
+              <Label htmlFor="password">Password</Label>
               <div className="relative mt-2 rounded-md shadow-sm">
-                <input
+                <Input
                   {...register('password')}
                   id="password"
                   name="password"
                   type="password"
-                  aria-invalid={errors.password ? 'true' : 'false'}
-                  aria-describedby="password-error"
-                  className={clsx(
-                    'block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6',
-                    {
-                      'ring-red-300 focus:ring-red-500 focus:ring-1 text-red-900':
-                        errors.password
-                    }
-                  )}
+                  variant={errors.password && 'error'}
                 />
                 {errors.password && (
                   <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
@@ -161,28 +138,15 @@ export default function Register({ redirectMethod }: PasswordSignInProps) {
               )}
             </div>
 
-            <div className="flex items-center">
-              <div className="text-sm leading-6">
-                <a
-                  href="#"
-                  className="font-semibold text-indigo-600 hover:text-indigo-500"
-                >
-                  Forgot password?
-                </a>
-              </div>
-            </div>
             <div>
-              <button
-                type="submit"
-                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              >
+              <Button type="submit" className="w-full py-1.5 leading-6">
                 Sign up
-              </button>
+              </Button>
             </div>
           </form>
 
           <div>
-            <div className="relative mt-10">
+            <div className="relative mt-8">
               <div
                 aria-hidden="true"
                 className="absolute inset-0 flex items-center"

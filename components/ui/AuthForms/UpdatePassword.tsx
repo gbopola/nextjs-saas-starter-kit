@@ -1,5 +1,4 @@
 'use client';
-
 import Button from '@/components/ui/Button';
 import { updatePassword } from '@/utils/auth-helpers/server';
 import { handleRequest } from '@/utils/auth-helpers/client';
@@ -81,12 +80,7 @@ export default function UpdatePassword({
               <p className="text-red-500">{errors.confirmPassword.message}</p>
             )}
           </div>
-          <Button
-            variant="slim"
-            type="submit"
-            className="mt-1"
-            loading={isSubmitting}
-          >
+          <Button type="submit" className="mt-1">
             Update Password
           </Button>
         </div>

@@ -1,37 +1,41 @@
-import React, { InputHTMLAttributes, ChangeEvent } from 'react';
-import cn from 'classnames';
+import React from 'react';
+import { cn } from '@/utils/cn';
+import { cva } from 'class-variance-authority';
 
-import s from './Input.module.css';
-
-interface Props extends Omit<InputHTMLAttributes<any>, 'onChange'> {
-  className?: string;
-  onChange: (value: string) => void;
-}
-const Input = (props: Props) => {
-  const { className, children, onChange, ...rest } = props;
-
-  const rootClassName = cn(s.root, {}, className);
-
-  const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (onChange) {
-      onChange(e.target.value);
-    }
-    return null;
-  };
-
-  return (
-    <label>
-      <input
-        className={rootClassName}
-        onChange={handleOnChange}
-        autoComplete="off"
-        autoCorrect="off"
-        autoCapitalize="off"
-        spellCheck="false"
-        {...rest}
-      />
-    </label>
-  );
+type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
+  variant?: 'default' | 'error';
+  isInvalid?: boolean;
+  type?: 'text' | 'email' | 'password';
 };
+
+const Input = React.forwardRef<HTMLInputElement, InputProps>(
+  ({ className, variant, isInvalid = false, type, ...props }, ref) => {
+    return (
+      <input
+        {...props}
+        ref={ref}
+        type={type}
+        aria-invalid={isInvalid}
+        aria-describedby={isInvalid ? `${props.id}-error` : undefined}
+        className={cn(inputVariants({ variant }), className)}
+      />
+    );
+  }
+);
+
+const inputVariants = cva(
+  'block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset transition sm:text-sm sm:leading-6',
+  {
+    variants: {
+      variant: {
+        default: 'focus:ring-indigo-600',
+        error: 'ring-red-300 focus:ring-red-500 focus:ring-1 text-red-900'
+      }
+    },
+    defaultVariants: {
+      variant: 'default'
+    }
+  }
+);
 
 export default Input;

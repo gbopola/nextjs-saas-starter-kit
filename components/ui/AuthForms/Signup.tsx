@@ -81,12 +81,7 @@ export default function SignUp({ allowEmail, redirectMethod }: SignUpProps) {
               <p className="text-red-500">{errors.password.message}</p>
             )}
           </div>
-          <Button
-            variant="slim"
-            type="submit"
-            className="mt-1"
-            loading={isSubmitting}
-          >
+          <Button type="submit" className="mt-1">
             Sign up
           </Button>
         </div>

@@ -3,7 +3,7 @@ import {
   DashboardMobileNav,
   DashboardNav,
   DashboardTopNav
-} from '@/components/ui/Shared';
+} from '@/components/Shared';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 

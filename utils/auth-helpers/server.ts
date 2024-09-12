@@ -202,19 +202,19 @@ export async function signUp(formData: Record<string, string>) {
     data.user.identities.length == 0
   ) {
     redirectPath = getErrorRedirect(
-      '/signin/signup',
+      '/register',
       'Sign up failed.',
       'There is already an account associated with this email address. Try resetting your password.'
     );
   } else if (data.user) {
     redirectPath = getStatusRedirect(
-      '/',
+      '/register',
       'Success!',
       'Please check your email for a confirmation link. You may now close this tab.'
     );
   } else {
     redirectPath = getErrorRedirect(
-      '/signin/signup',
+      '/register',
       'Hmm... Something went wrong.',
       'You could not be signed up.'
     );

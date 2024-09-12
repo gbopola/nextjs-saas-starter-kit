@@ -1,66 +1,52 @@
-'use client';
+import { cn } from '@/utils/cn';
+import { cva } from 'class-variance-authority';
 
-import cn from 'classnames';
-import React, { forwardRef, useRef, ButtonHTMLAttributes } from 'react';
-import { mergeRefs } from 'react-merge-refs';
+type ButtonProps = React.HTMLAttributes<HTMLButtonElement> & {
+  variant?: 'primary' | 'secondary' | 'destructive';
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+  type?: 'button' | 'submit' | 'reset';
+};
 
-import LoadingDots from '@/components/ui/LoadingDots';
+export default function Button({
+  className,
+  variant,
+  size,
 
-import styles from './Button.module.css';
-
-interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'slim' | 'flat';
-  active?: boolean;
-  width?: number;
-  loading?: boolean;
-  Component?: React.ComponentType;
+  type = 'button',
+  ...props
+}: ButtonProps) {
+  return (
+    <button
+      {...props}
+      type={type}
+      className={cn(buttonVariants({ variant, size }), className)}
+    />
+  );
 }
 
-const Button = forwardRef<HTMLButtonElement, Props>((props, buttonRef) => {
-  const {
-    className,
-    variant = 'flat',
-    children,
-    active,
-    width,
-    loading = false,
-    disabled = false,
-    style = {},
-    Component = 'button',
-    ...rest
-  } = props;
-  const ref = useRef(null);
-  const rootClassName = cn(
-    styles.root,
-    {
-      [styles.slim]: variant === 'slim',
-      [styles.loading]: loading,
-      [styles.disabled]: disabled
+const buttonVariants = cva(
+  'inline-flex justify-center items-center font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 transition disabled:opacity-50 disabled:pointer-events-none',
+  {
+    variants: {
+      variant: {
+        primary:
+          'bg-indigo-600 hover:bg-indigo-500 focus-visible:outline-indigo-600',
+        secondary:
+          'bg-white hover:bg-gray-50 text-gray-900 ring-1 ring-inset ring-gray-300',
+        destructive: 'bg-red-600 hover:bg-red-500 focus-visible:outline-red-600'
+      },
+      size: {
+        xs: 'px-2 py-1 text-xs rounded',
+        sm: 'px-2 py-1 text-sm rounded',
+        md: 'px-2.5 py-1.5 text-sm rounded-md',
+        lg: 'px-3 py-2 text-sm rounded-md',
+        xl: 'px-3.5 py-2.5 text-sm rounded-md'
+      }
     },
-    className
-  );
-  return (
-    <Component
-      aria-pressed={active}
-      data-variant={variant}
-      ref={mergeRefs([ref, buttonRef])}
-      className={rootClassName}
-      disabled={disabled}
-      style={{
-        width,
-        ...style
-      }}
-      {...rest}
-    >
-      {children}
-      {loading && (
-        <i className="flex pl-2 m-0">
-          <LoadingDots />
-        </i>
-      )}
-    </Component>
-  );
-});
-Button.displayName = 'Button';
 
-export default Button;
+    defaultVariants: {
+      variant: 'primary',
+      size: 'md'
+    }
+  }
+);
