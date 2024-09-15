@@ -5,7 +5,7 @@ import Button from '../../Button';
 import { marketingConfig } from '@/config/marketing';
 import { HiBars3, HiXMark } from 'react-icons/hi2';
 import Link from 'next/link';
-import s from '../../Navbar/Navbar.module.css';
+import { Logo } from '@/components/Shared';
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -18,16 +18,12 @@ export default function Header() {
         <div className="flex lg:flex-1">
           <a href="#" className="-m-1.5 p-1.5">
             <span className="sr-only">Your Company</span>
-            <img
-              className={s.logo}
-              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-              alt=""
-            />
+            <Logo height={8} />
           </a>
         </div>
         <div className="hidden lg:flex lg:gap-x-12">
           {marketingConfig.mainNav.map((item) => (
-            <Link key={item.title} href={item.href} className={s.link}>
+            <Link key={item.title} href={item.href}>
               {item.title}
             </Link>
           ))}

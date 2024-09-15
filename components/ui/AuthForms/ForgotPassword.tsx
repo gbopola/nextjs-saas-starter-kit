@@ -6,11 +6,11 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
-import Logo from '@/components/Shared/Logo';
 import Label from '../Label';
 import Input from '../Input';
 import { HiExclamationCircle } from 'react-icons/hi2';
 import { forgotPasswordSchema } from '@/validations/auth';
+import { Logo } from '@/components/Shared';
 
 // Define prop type with allowEmail boolean
 interface ForgotPasswordProps {

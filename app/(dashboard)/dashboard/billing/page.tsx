@@ -1,4 +1,4 @@
-import DashboardHeader from '@/components/Shared/DashboardHeader';
+import { DashboardHeader } from '@/components/Shared';
 import { BillingCard } from '@/components/ui/Billing';
 import React from 'react';
 

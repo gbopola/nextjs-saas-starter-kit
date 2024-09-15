@@ -1,14 +1,10 @@
 'use client';
-
 import OauthSignIn from '@/components/ui/AuthForms/OauthSignIn';
 import { handleRequest } from '@/utils/auth-helpers/client';
-import { signInWithPassword, signUp } from '@/utils/auth-helpers/server';
-import { getUser } from '@/utils/supabase/queries';
-import { createClient } from '@/utils/supabase/server';
+import { signUp } from '@/utils/auth-helpers/server';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { clsx } from 'clsx';
 import Link from 'next/link';
-import { redirect, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { HiExclamationCircle } from 'react-icons/hi2';
 import { z } from 'zod';

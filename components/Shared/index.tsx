@@ -6,3 +6,5 @@ export { default as DashboardNotifications } from './DashboardNotifications';
 export { default as DashboardSearch } from './DashboardSearch';
 export { default as DashboardProfileDropdown } from './DashboardProfileDropdown';
 export { default as DashboardTopNav } from './DashboardTopNav';
+export { default as Logo } from './Logo';
+export { default as DashboardHeader } from './DashboardHeader';

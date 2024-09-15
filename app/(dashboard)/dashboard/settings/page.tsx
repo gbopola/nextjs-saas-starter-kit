@@ -1,4 +1,4 @@
-import DashboardHeader from '@/components/Shared/DashboardHeader';
+import { DashboardHeader } from '@/components/Shared';
 import AccountSettingsForm from '@/components/ui/AccountForms/AccountSettingsForm';
 import { getUser, getUserDetails } from '@/utils/supabase/queries';
 import { createClient } from '@/utils/supabase/server';

@@ -9,10 +9,10 @@ import { useRouter } from 'next/navigation';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { HiExclamationCircle } from 'react-icons/hi2';
 import { z } from 'zod';
-import Logo from '../../Shared/Logo';
 import Button, { ButtonLoading } from '../Button';
 import Input from '../Input';
 import Label from '../Label';
+import { Logo } from '@/components/Shared';
 
 // Define prop type with allowEmail boolean
 interface PasswordSignInProps {

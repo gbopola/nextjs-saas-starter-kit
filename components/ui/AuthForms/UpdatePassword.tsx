@@ -6,11 +6,11 @@ import { useRouter } from 'next/navigation';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import Logo from '@/components/Shared/Logo';
 import Label from '../Label';
 import Input from '../Input';
 import { HiExclamationCircle } from 'react-icons/hi2';
 import { updatePasswordSchema } from '@/validations/auth';
+import { Logo } from '@/components/Shared';
 
 interface UpdatePasswordProps {
   redirectMethod: string;
