@@ -10,7 +10,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { HiExclamationCircle } from 'react-icons/hi2';
 import { z } from 'zod';
 import Logo from '../../Shared/Logo';
-import Button from '../Button';
+import Button, { ButtonLoading } from '../Button';
 import Input from '../Input';
 import Label from '../Label';
 
@@ -39,7 +39,7 @@ export default function Login({ redirectMethod }: PasswordSignInProps) {
   return (
     <>
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <Logo />
+        <Logo height={10} />
         <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
           Sign in to your account
         </h2>
@@ -54,7 +54,7 @@ export default function Login({ redirectMethod }: PasswordSignInProps) {
           >
             <div>
               <Label htmlFor="email">Email</Label>
-              <div className="relative mt-2 rounded-md shadow-sm">
+              <div className="relative mt-2">
                 <Input
                   {...register('email')}
                   id="email"
@@ -85,7 +85,7 @@ export default function Login({ redirectMethod }: PasswordSignInProps) {
 
             <div>
               <Label htmlFor="password">Password</Label>
-              <div className="relative mt-2 rounded-md shadow-sm">
+              <div className="relative mt-2">
                 <Input
                   {...register('password')}
                   id="password"
@@ -124,9 +124,13 @@ export default function Login({ redirectMethod }: PasswordSignInProps) {
               </div>
             </div>
             <div>
-              <Button type="submit" className="w-full py-1.5 leading-6">
-                Sign in
-              </Button>
+              {isSubmitting ? (
+                <ButtonLoading />
+              ) : (
+                <Button type="submit" className="w-full leading-6">
+                  Sign in
+                </Button>
+              )}
             </div>
           </form>
 

@@ -1,9 +1,4 @@
 import { Header } from '@/components/ui/MarketingSections';
-import {
-  DashboardMobileNav,
-  DashboardNav,
-  DashboardTopNav
-} from '@/components/Shared';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 

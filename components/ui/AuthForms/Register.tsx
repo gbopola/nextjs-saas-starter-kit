@@ -14,24 +14,16 @@ import { HiExclamationCircle } from 'react-icons/hi2';
 import { z } from 'zod';
 import Input from '../Input';
 import Label from '../Label';
-import Button from '../Button';
+import Button, { ButtonLoading } from '../Button';
+import Logo from '@/components/Shared/Logo';
+import { registerSchema } from '@/validations/auth';
 
 // Define prop type with allowEmail boolean
 interface PasswordSignInProps {
   redirectMethod: string;
 }
 
-const schema = z.object({
-  email: z
-    .string()
-    .min(1, { message: 'Email is required' })
-    .email({ message: 'Not a valid email address' }),
-  password: z
-    .string()
-    .min(6, { message: 'Password must be at least 6 characters' })
-});
-
-type FormFields = z.infer<typeof schema>;
+type FormFields = z.infer<typeof registerSchema>;
 
 export default function Register({ redirectMethod }: PasswordSignInProps) {
   const router = redirectMethod === 'client' ? useRouter() : null;
@@ -41,7 +33,7 @@ export default function Register({ redirectMethod }: PasswordSignInProps) {
     handleSubmit,
     formState: { errors, isSubmitting }
   } = useForm<FormFields>({
-    resolver: zodResolver(schema)
+    resolver: zodResolver(registerSchema)
   });
 
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
@@ -50,21 +42,8 @@ export default function Register({ redirectMethod }: PasswordSignInProps) {
 
   return (
     <>
-      {/*
-          This example requires updating your template:
-  
-          ```
-          <html class="h-full bg-gray-50">
-          <body class="h-full">
-          ```
-        */}
-
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <img
-          alt="Your Company"
-          src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-          className="mx-auto h-10 w-auto"
-        />
+        <Logo height={10} />
         <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
           Register an account
         </h2>
@@ -79,7 +58,7 @@ export default function Register({ redirectMethod }: PasswordSignInProps) {
           >
             <div>
               <Label htmlFor="email">Email</Label>
-              <div className="relative mt-2 rounded-md shadow-sm">
+              <div className="relative mt-2">
                 <Input
                   {...register('email')}
                   id="email"
@@ -110,7 +89,7 @@ export default function Register({ redirectMethod }: PasswordSignInProps) {
 
             <div>
               <Label htmlFor="password">Password</Label>
-              <div className="relative mt-2 rounded-md shadow-sm">
+              <div className="relative mt-2">
                 <Input
                   {...register('password')}
                   id="password"
@@ -139,9 +118,13 @@ export default function Register({ redirectMethod }: PasswordSignInProps) {
             </div>
 
             <div>
-              <Button type="submit" className="w-full py-1.5 leading-6">
-                Sign up
-              </Button>
+              {isSubmitting ? (
+                <ButtonLoading page="register" />
+              ) : (
+                <Button type="submit" className="w-full leading-6">
+                  Sign up
+                </Button>
+              )}
             </div>
           </form>
 

@@ -1,5 +1,4 @@
 'use client';
-import { useState } from 'react';
 import DashboardNotifications from './DashboardNotifications';
 import DashboardProfileDropdown from './DashboardProfileDropdown';
 import DashboardSearch from './DashboardSearch';

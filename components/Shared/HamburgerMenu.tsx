@@ -2,7 +2,7 @@ import useStore from '@/store/store';
 import { HiBars3 } from 'react-icons/hi2';
 
 export default function HamburgerMenu() {
-  const { sidebarOpen, setSidebarOpen } = useStore();
+  const { setSidebarOpen } = useStore();
 
   return (
     <button

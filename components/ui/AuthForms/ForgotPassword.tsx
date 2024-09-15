@@ -1,43 +1,38 @@
 'use client';
-
 import Button from '@/components/ui/Button';
-import Link from 'next/link';
 import { requestPasswordUpdate } from '@/utils/auth-helpers/server';
 import { handleRequest } from '@/utils/auth-helpers/client';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
+import Logo from '@/components/Shared/Logo';
+import Label from '../Label';
+import Input from '../Input';
+import { HiExclamationCircle } from 'react-icons/hi2';
+import { forgotPasswordSchema } from '@/validations/auth';
 
 // Define prop type with allowEmail boolean
 interface ForgotPasswordProps {
-  allowEmail: boolean;
   redirectMethod: string;
-  disableButton?: boolean;
 }
 
-const schema = z.object({
-  email: z
-    .string()
-    .min(1, { message: 'Email is required' })
-    .email({ message: 'Invalid email address' })
-});
-
-type FormFields = z.infer<typeof schema>;
+type FormFields = z.infer<typeof forgotPasswordSchema>;
 
 export default function ForgotPassword({
-  allowEmail,
-  redirectMethod,
-  disableButton
+  redirectMethod
 }: ForgotPasswordProps) {
   const router = redirectMethod === 'client' ? useRouter() : null;
+
+  //    get search params from the URL
+  const searchParams = useSearchParams().get('disable_button') ? true : false;
 
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting }
   } = useForm<FormFields>({
-    resolver: zodResolver(schema)
+    resolver: zodResolver(forgotPasswordSchema)
   });
 
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
@@ -45,58 +40,64 @@ export default function ForgotPassword({
   };
 
   return (
-    <div className="my-8">
-      <form
-        noValidate={true}
-        className="mb-4"
-        onSubmit={handleSubmit(onSubmit)}
-      >
-        <div className="grid gap-2">
-          <div className="grid gap-1">
-            <label htmlFor="email">Email</label>
-            <input
-              {...register('email')}
-              id="email"
-              placeholder="name@example.com"
-              type="email"
-              name="email"
-              autoCapitalize="none"
-              autoComplete="email"
-              autoCorrect="off"
-              className="w-full p-3 rounded-md bg-zinc-800"
-            />
-            {errors.email && (
-              <p className="text-red-500">{errors.email.message}</p>
-            )}
-          </div>
-          <Button
-            variant="slim"
-            type="submit"
-            className="mt-1"
-            loading={isSubmitting}
-            disabled={disableButton}
+    <>
+      <div className="sm:mx-auto sm:w-full sm:max-w-md">
+        <Logo height={10} />
+        <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+          Reset your password
+        </h2>
+      </div>
+
+      <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
+        <div className="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
+          <form
+            noValidate={true}
+            className="space-y-6"
+            onSubmit={handleSubmit(onSubmit)}
           >
-            Send Email
-          </Button>
+            <div>
+              <Label htmlFor="email">Email</Label>
+              <div className="relative mt-2 rounded-md shadow-sm">
+                <Input
+                  {...register('email')}
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="you@example.com"
+                  variant={errors.email && 'error'}
+                />
+                {errors.email && (
+                  <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                    <HiExclamationCircle
+                      className="h-5 w-5 text-red-500"
+                      aria-hidden="true"
+                    />
+                  </div>
+                )}
+              </div>
+              {errors.email && (
+                <p
+                  id="email-error"
+                  className="mt-2 text-sm text-red-600"
+                  role="alert"
+                >
+                  {errors.email.message}
+                </p>
+              )}
+            </div>
+
+            <div>
+              <Button
+                type="submit"
+                disabled={isSubmitting || searchParams}
+                className="w-full leading-6"
+              >
+                Send link to email
+              </Button>
+            </div>
+          </form>
         </div>
-      </form>
-      {/* <p>
-        <Link href="/signin/password_signin" className="font-light text-sm">
-          Sign in with email and password
-        </Link>
-      </p> */}
-      {allowEmail && (
-        <p>
-          <Link href="/signin/email_signin" className="font-light text-sm">
-            Sign in via magic link
-          </Link>
-        </p>
-      )}
-      {/* <p>
-        <Link href="/signin/signup" className="font-light text-sm">
-          Don't have an account? Sign up
-        </Link>
-      </p> */}
-    </div>
+      </div>
+    </>
   );
 }

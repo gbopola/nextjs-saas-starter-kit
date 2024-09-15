@@ -19,15 +19,10 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({ children }: PropsWithChildren) {
   return (
-    <html lang="en" className="h-full">
+    <html lang="en">
       <body>
         {/* <Navbar /> */}
-        <main
-        // id="skip"
-        // className="min-h-[calc(100dvh-4rem)] md:min-h[calc(100dvh-5rem)]"
-        >
-          {children}
-        </main>
+        <main>{children}</main>
         {/* <Footer /> */}
         <Suspense>
           <Toaster />

@@ -96,7 +96,7 @@ export async function requestPasswordUpdate(formData: Record<string, any>) {
 
   if (!isValidEmail(email)) {
     redirectPath = getErrorRedirect(
-      '/signin/forgot_password',
+      '/forgot_password',
       'Invalid email address.',
       'Please try again.'
     );
@@ -110,20 +110,20 @@ export async function requestPasswordUpdate(formData: Record<string, any>) {
 
   if (error) {
     redirectPath = getErrorRedirect(
-      '/signin/forgot_password',
+      '/forgot_password',
       error.message,
       'Please try again.'
     );
   } else if (data) {
     redirectPath = getStatusRedirect(
-      '/signin/forgot_password',
+      '/forgot_password',
       'Success!',
       'Please check your email for a password reset link. You may now close this tab.',
       true
     );
   } else {
     redirectPath = getErrorRedirect(
-      '/signin/forgot_password',
+      '/forgot_password',
       'Hmm... Something went wrong.',
       'Password reset email could not be sent.'
     );
@@ -233,7 +233,7 @@ export async function updatePassword(formData: Record<string, any>) {
   // Check that the password and confirmation match
   if (password !== passwordConfirm) {
     redirectPath = getErrorRedirect(
-      '/signin/update_password',
+      '/update_password',
       'Your password could not be updated.',
       'Passwords do not match.'
     );
@@ -246,19 +246,19 @@ export async function updatePassword(formData: Record<string, any>) {
 
   if (error) {
     redirectPath = getErrorRedirect(
-      '/signin/update_password',
+      '/update_password',
       'Your password could not be updated.',
       error.message
     );
   } else if (data.user) {
     redirectPath = getStatusRedirect(
-      '/',
+      '/dashboard',
       'Success!',
       'Your password has been updated.'
     );
   } else {
     redirectPath = getErrorRedirect(
-      '/signin/update_password',
+      '/update_password',
       'Hmm... Something went wrong.',
       'Your password could not be updated.'
     );
@@ -334,6 +334,56 @@ export async function updateName(formData: Record<string, any>) {
       '/account',
       'Hmm... Something went wrong.',
       'Your name could not be updated.'
+    );
+  }
+}
+
+export async function updateAccountDetails(formData: Record<string, any>) {
+  // Get form data
+  const name = formData.name;
+  const email = formData.email;
+
+  // check that the email is valid
+  if (!isValidEmail(email)) {
+    return getErrorRedirect(
+      '/dashboard/settings',
+      'Your account details could not be updated.',
+      'Invalid email address.'
+    );
+  }
+
+  // check name is less than 50 characters
+  if (name.length > 50) {
+    return getErrorRedirect(
+      '/dashboard/settings',
+      'Your account details could not be updated.',
+      'Name is too long.'
+    );
+  }
+
+  const supabase = createClient();
+  const { error, data } = await supabase.auth.updateUser({
+    email,
+    data: { full_name: name }
+  });
+
+  if (error) {
+    return getErrorRedirect(
+      '/dashboard/settings',
+      'Your account details could not be updated.',
+      error.message
+    );
+  } else if (data.user) {
+    return getStatusRedirect(
+      '/dashboard/settings',
+      'Success!',
+      'Your account details have been updated.'
+    );
+  } else {
+    return getErrorRedirect(
+      '/dashboard/settings',
+      'Hmm... Something went wrong.',
+      'Your account details could not be updated.'
     );
   }
 }

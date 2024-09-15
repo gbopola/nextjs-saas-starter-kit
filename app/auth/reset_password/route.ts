@@ -17,18 +17,28 @@ export async function GET(request: NextRequest) {
     if (error) {
       return NextResponse.redirect(
         getErrorRedirect(
-          `${requestUrl.origin}/signin/forgot_password`,
+          `${requestUrl.origin}/forgot_password`,
           error.name,
           "Sorry, we weren't able to log you in. Please try again."
         )
       );
     }
+  } else {
+    const error_description = requestUrl.searchParams.get('error_description');
+    return NextResponse.redirect(
+      getErrorRedirect(
+        `${requestUrl.origin}/forgot_password`,
+        'Error',
+        error_description ||
+          "Sorry, we weren't able to log you in. Please try again."
+      )
+    );
   }
 
   // URL to redirect to after sign in process completes
   return NextResponse.redirect(
     getStatusRedirect(
-      `${requestUrl.origin}/signin/update_password`,
+      `${requestUrl.origin}/update_password`,
       'You are now signed in.',
       'Please enter a new password for your account.'
     )
