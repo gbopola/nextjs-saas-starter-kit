@@ -2,7 +2,7 @@
 import Button from '@/components/ui/Button';
 import { requestPasswordUpdate } from '@/utils/auth-helpers/server';
 import { handleRequest } from '@/utils/auth-helpers/client';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -15,19 +15,16 @@ import { Logo } from '@/components/Shared';
 // Define prop type with allowEmail boolean
 interface ForgotPasswordProps {
   redirectMethod: string;
-  searchParams: string;
+  disableButton?: boolean;
 }
 
 type FormFields = z.infer<typeof forgotPasswordSchema>;
 
 export default function ForgotPassword({
   redirectMethod,
-  searchParams
+  disableButton
 }: ForgotPasswordProps) {
   const router = redirectMethod === 'client' ? useRouter() : null;
-
-  //    get search params from the URL
-  const params = searchParams === 'disable_button' ? true : false;
 
   const {
     register,
@@ -91,7 +88,7 @@ export default function ForgotPassword({
             <div>
               <Button
                 type="submit"
-                disabled={isSubmitting || params}
+                disabled={isSubmitting || disableButton}
                 className="w-full leading-6"
               >
                 Send link to email

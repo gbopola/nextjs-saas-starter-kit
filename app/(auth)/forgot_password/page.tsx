@@ -4,11 +4,14 @@ import Container from '@/components/ui/Container';
 export default function ForgotPasswordPage({
   searchParams
 }: {
-  disable_button: boolean;
+  searchParams: { disable_button: boolean };
 }) {
   return (
     <Container>
-      <ForgotPassword redirectMethod="client" />
+      <ForgotPassword
+        redirectMethod="client"
+        disableButton={searchParams.disable_button}
+      />
     </Container>
   );
 }
