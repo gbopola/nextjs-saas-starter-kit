@@ -22,7 +22,10 @@ export default async function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang="en">
       <head>
-        <PlausibleProvider domain="nextjs-saas-starter-kit.vercel.app" />
+        <PlausibleProvider
+          domain="nextjs-saas-starter-kit.vercel.app"
+          taggedEvents={true}
+        />
       </head>
       <body>
         {/* <Navbar /> */}
