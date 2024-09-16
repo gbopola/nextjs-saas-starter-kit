@@ -1,4 +1,4 @@
-import ForgotPassword from '@/components/ui/AuthForms/ForgotPassword';
+import { ForgotPassword } from '@/components/ui/AuthForms';
 import Container from '@/components/ui/Container';
 
 export default function ForgotPasswordPage({

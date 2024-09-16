@@ -1,5 +1,5 @@
 import { DashboardHeader } from '@/components/Shared';
-import AccountSettingsForm from '@/components/ui/AccountForms/AccountSettingsForm';
+import { AccountSettingsForm } from '@/components/ui/AccountForms';
 import { getUser, getUserDetails } from '@/utils/supabase/queries';
 import { createClient } from '@/utils/supabase/server';
 import { redirect } from 'next/navigation';

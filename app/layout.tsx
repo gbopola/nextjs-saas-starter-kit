@@ -4,9 +4,12 @@ import { PropsWithChildren, Suspense } from 'react';
 import { getURL } from '@/utils/helpers';
 import 'styles/main.css';
 import PlausibleProvider from 'next-plausible';
+import { Inter } from 'next/font/google';
 
 const title = 'Next.js Subscription Starter';
 const description = 'Brought to you by Vercel, Stripe, and Supabase.';
+
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   metadataBase: new URL(getURL()),
@@ -23,11 +26,14 @@ export default async function RootLayout({ children }: PropsWithChildren) {
     <html lang="en">
       <head>
         <PlausibleProvider
-          domain="nextjs-saas-starter-kit.vercel.app"
+          domain={
+            process.env.NEXT_PUBLIC_SITE_URL ||
+            'nextjs-saas-starter-kit.vercel.app'
+          }
           taggedEvents={true}
         />
       </head>
-      <body>
+      <body className={inter.className}>
         {/* <Navbar /> */}
         <main>{children}</main>
         {/* <Footer /> */}

@@ -1,4 +1,4 @@
-import Login from '@/components/ui/AuthForms/Login';
+import { Login } from '@/components/ui/AuthForms';
 import Container from '@/components/ui/Container';
 import { checkUserAndRedirect } from '@/utils/auth';
 

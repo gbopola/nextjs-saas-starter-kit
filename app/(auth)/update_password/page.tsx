@@ -1,4 +1,4 @@
-import UpdatePassword from '@/components/ui/AuthForms/UpdatePassword';
+import { UpdatePassword } from '@/components/ui/AuthForms';
 import Container from '@/components/ui/Container';
 
 export default async function ResetPasswordPage() {
