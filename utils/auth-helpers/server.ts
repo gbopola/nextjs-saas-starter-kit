@@ -134,10 +134,9 @@ export async function requestPasswordUpdate(formData: Record<string, any>) {
 
 export async function signInWithPassword(formData: Record<string, string>) {
   const cookieStore = cookies();
+  const { email, password } = formData;
   // const email = String(formData.get('email')).trim();
   // const password = String(formData.get('password')).trim();
-  const email = formData.email;
-  const password = formData.password;
   let redirectPath: string;
 
   const supabase = createClient();
@@ -162,13 +161,12 @@ export async function signInWithPassword(formData: Record<string, string>) {
   return redirectPath;
 }
 
-export async function signUp(formData: Record<string, string>) {
+export async function signUp(formData: Record<string, any>) {
   const callbackURL = getURL('/auth/callback');
+  const { email, password } = formData;
 
   // const email = String(formData.get('email')).trim();
   // const password = String(formData.get('password')).trim();
-  const email = formData.email;
-  const password = formData.password;
   let redirectPath: string;
 
   if (!isValidEmail(email)) {
@@ -224,14 +222,13 @@ export async function signUp(formData: Record<string, string>) {
 }
 
 export async function updatePassword(formData: Record<string, any>) {
-  const password = formData.password;
-  const passwordConfirm = formData.confirmPassword;
+  const { password, confirmPassword } = formData;
   // const password = String(formData.get('password')).trim();
   // const passwordConfirm = String(formData.get('passwordConfirm')).trim();
   let redirectPath: string;
 
   // Check that the password and confirmation match
-  if (password !== passwordConfirm) {
+  if (password !== confirmPassword) {
     redirectPath = getErrorRedirect(
       '/update_password',
       'Your password could not be updated.',
@@ -267,81 +264,9 @@ export async function updatePassword(formData: Record<string, any>) {
   return redirectPath;
 }
 
-export async function updateEmail(formData: Record<string, any>) {
-  // Get form data
-  const newEmail = String(formData.get('newEmail')).trim();
-
-  // Check that the email is valid
-  if (!isValidEmail(newEmail)) {
-    return getErrorRedirect(
-      '/account',
-      'Your email could not be updated.',
-      'Invalid email address.'
-    );
-  }
-
-  const supabase = createClient();
-
-  const callbackUrl = getURL(
-    getStatusRedirect('/account', 'Success!', `Your email has been updated.`)
-  );
-
-  const { error } = await supabase.auth.updateUser(
-    { email: newEmail },
-    {
-      emailRedirectTo: callbackUrl
-    }
-  );
-
-  if (error) {
-    return getErrorRedirect(
-      '/account',
-      'Your email could not be updated.',
-      error.message
-    );
-  } else {
-    return getStatusRedirect(
-      '/account',
-      'Confirmation emails sent.',
-      `You will need to confirm the update by clicking the links sent to both the old and new email addresses.`
-    );
-  }
-}
-
-export async function updateName(formData: Record<string, any>) {
-  // Get form data
-  const fullName = String(formData.get('fullName')).trim();
-
-  const supabase = createClient();
-  const { error, data } = await supabase.auth.updateUser({
-    data: { full_name: fullName }
-  });
-
-  if (error) {
-    return getErrorRedirect(
-      '/account',
-      'Your name could not be updated.',
-      error.message
-    );
-  } else if (data.user) {
-    return getStatusRedirect(
-      '/account',
-      'Success!',
-      'Your name has been updated.'
-    );
-  } else {
-    return getErrorRedirect(
-      '/account',
-      'Hmm... Something went wrong.',
-      'Your name could not be updated.'
-    );
-  }
-}
-
 export async function updateAccountDetails(formData: Record<string, any>) {
   // Get form data
-  const name = formData.name;
-  const email = formData.email;
+  const { name, email } = formData;
 
   // check that the email is valid
   if (!isValidEmail(email)) {
