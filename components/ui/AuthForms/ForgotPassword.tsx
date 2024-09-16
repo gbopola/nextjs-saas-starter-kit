@@ -11,6 +11,7 @@ import Input from '../Input';
 import { HiExclamationCircle } from 'react-icons/hi2';
 import { forgotPasswordSchema } from '@/validations/auth';
 import { Logo } from '@/components/Shared';
+import { Suspense } from 'react';
 
 // Define prop type with allowEmail boolean
 interface ForgotPasswordProps {
@@ -40,64 +41,66 @@ export default function ForgotPassword({
   };
 
   return (
-    <>
-      <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <Logo height={10} />
-        <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-          Reset your password
-        </h2>
-      </div>
+     
+      <Suspense>
+        <div className="sm:mx-auto sm:w-full sm:max-w-md">
+          <Logo height={10} />
+          <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+            Reset your password
+          </h2>
+        </div>
 
-      <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
-        <div className="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
-          <form
-            noValidate={true}
-            className="space-y-6"
-            onSubmit={handleSubmit(onSubmit)}
-          >
-            <div>
-              <Label htmlFor="email">Email</Label>
-              <div className="relative mt-2 rounded-md shadow-sm">
-                <Input
-                  {...register('email')}
-                  id="email"
-                  name="email"
-                  type="email"
-                  placeholder="you@example.com"
-                  variant={errors.email && 'error'}
-                />
+        <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
+          <div className="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
+            <form
+              noValidate={true}
+              className="space-y-6"
+              onSubmit={handleSubmit(onSubmit)}
+            >
+              <div>
+                <Label htmlFor="email">Email</Label>
+                <div className="relative mt-2 rounded-md shadow-sm">
+                  <Input
+                    {...register('email')}
+                    id="email"
+                    name="email"
+                    type="email"
+                    placeholder="you@example.com"
+                    variant={errors.email && 'error'}
+                  />
+                  {errors.email && (
+                    <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                      <HiExclamationCircle
+                        className="h-5 w-5 text-red-500"
+                        aria-hidden="true"
+                      />
+                    </div>
+                  )}
+                </div>
                 {errors.email && (
-                  <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                    <HiExclamationCircle
-                      className="h-5 w-5 text-red-500"
-                      aria-hidden="true"
-                    />
-                  </div>
+                  <p
+                    id="email-error"
+                    className="mt-2 text-sm text-red-600"
+                    role="alert"
+                  >
+                    {errors.email.message}
+                  </p>
                 )}
               </div>
-              {errors.email && (
-                <p
-                  id="email-error"
-                  className="mt-2 text-sm text-red-600"
-                  role="alert"
-                >
-                  {errors.email.message}
-                </p>
-              )}
-            </div>
 
-            <div>
-              <Button
-                type="submit"
-                disabled={isSubmitting || searchParams}
-                className="w-full leading-6"
-              >
-                Send link to email
-              </Button>
-            </div>
-          </form>
+              <div>
+                <Button
+                  type="submit"
+                  disabled={isSubmitting || searchParams}
+                  className="w-full leading-6"
+                >
+                  Send link to email
+                </Button>
+              </div>
+            </form>
+          </div>
         </div>
-      </div>
+      </Suspense>
     </>
   );
 }
