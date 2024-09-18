@@ -6,6 +6,7 @@ import { marketingConfig } from '@/config/marketing';
 import { HiBars3, HiXMark } from 'react-icons/hi2';
 import Link from 'next/link';
 import { Logo } from '@/components/Shared';
+import Image from 'next/image';
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -18,7 +19,7 @@ export default function Header() {
         <div className="flex lg:flex-1">
           <a href="#" className="-m-1.5 p-1.5">
             <span className="sr-only">Your Company</span>
-            <Logo height={8} />
+            <Logo />
           </a>
         </div>
         <div className="hidden lg:flex lg:gap-x-12">
@@ -61,15 +62,16 @@ export default function Header() {
           <div className="flex items-center gap-x-6">
             <a href="#" className="-m-1.5 p-1.5">
               <span className="sr-only">Your Company</span>
-              <img
-                className="h-8 w-auto"
+              <Image
+                height={8}
+                className="w-auto"
                 src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
                 alt=""
               />
             </a>
             <a
               href="#"
-              className="ml-auto rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="ml-auto rounded-md bg-brand-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
             >
               Sign up
             </a>

@@ -78,9 +78,7 @@ export default function AccountSettingsForm({
           </p>
         )}
       </div>
-      <Button size="lg" type="submit">
-        Save changes
-      </Button>
+      <Button type="submit">Save changes</Button>
     </form>
   );
 }

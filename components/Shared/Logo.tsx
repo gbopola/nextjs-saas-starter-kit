@@ -1,13 +1,6 @@
-type LogoProps = {
-  height: number;
-};
+import Image from 'next/image';
+import logo from '@/public/logo.svg';
 
-export default function Logo({ height }: LogoProps) {
-  return (
-    <img
-      alt="Your Company"
-      src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-      className={`mx-auto h-${height} w-auto`}
-    />
-  );
+export default function Logo() {
+  return <Image alt="Company logo" src={logo} className="w-auto" />;
 }

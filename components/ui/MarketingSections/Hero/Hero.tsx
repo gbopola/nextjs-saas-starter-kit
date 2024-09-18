@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 export default function Hero() {
   return (
     <div className="bg-white">
@@ -8,7 +10,7 @@ export default function Hero() {
               <div className="max-w-lg">
                 <div className="mt-24 sm:mt-32 lg:mt-16">
                   {/* <a href="#" className="inline-flex space-x-6">
-                    <span className="rounded-full bg-indigo-600/10 px-3 py-1 text-sm font-semibold leading-6 text-indigo-600 ring-1 ring-inset ring-indigo-600/10">
+                    <span className="rounded-full bg-brand-600/10 px-3 py-1 text-sm font-semibold leading-6 text-brand-600 ring-1 ring-inset ring-brand-600/10">
                       What's new
                     </span>
                     <span className="inline-flex items-center space-x-2 text-sm font-medium leading-6 text-gray-600">
@@ -30,7 +32,7 @@ export default function Hero() {
                 <div className="mt-10 flex items-center gap-x-6">
                   <a
                     href="#"
-                    className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    className="rounded-md bg-brand-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600"
                   >
                     Get started today
                   </a>
@@ -44,7 +46,9 @@ export default function Hero() {
               </div>
             </div>
           </div>
-          <img
+          <Image
+            width="0"
+            height="0"
             src="https://tailwindui.com/img/component-images/top-nav-with-multi-column-layout-screenshot.jpg"
             alt="hero"
             className="object-cover w-full h-full lg:h-auto lg:w-full"

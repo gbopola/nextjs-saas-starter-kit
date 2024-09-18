@@ -15,7 +15,7 @@ export default function BillingCard() {
         </div>
         <div className="flex items-center justify-between mt-5">
           <a href="https://billing.stripe.com/p/login/test_00g6oF0Id9Um1mU288">
-            <Button size="lg">Change plan</Button>
+            <Button>Change plan</Button>
           </a>
           <p className="mt-2 text-sm text-gray-500">
             Your plan renews on January 8, 2024.

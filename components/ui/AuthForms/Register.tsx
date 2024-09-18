@@ -13,6 +13,7 @@ import Label from '../Label';
 import Button, { ButtonLoading } from '../Button';
 import Logo from '@/components/Shared/Logo';
 import { registerSchema } from '@/validations/auth';
+import { MdErrorOutline } from 'react-icons/md';
 
 // Define prop type with allowEmail boolean
 interface PasswordSignInProps {
@@ -39,17 +40,22 @@ export default function Register({ redirectMethod }: PasswordSignInProps) {
   return (
     <>
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <Logo height={10} />
-        <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+        <div className="flex justify-center items-center">
+          <Logo />
+        </div>
+        <h2 className="mt-6 text-center sm:text-3xl text-2xl font-semibold text-gray-900 leading-9">
           Register an account
         </h2>
+        <p className="text-center mt-3 text-gray-600">
+          Please enter your details to create an account.
+        </p>
       </div>
 
-      <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
-        <div className="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
+      <div className="sm:mx-auto sm:w-full sm:max-w-[480px]">
+        <div className="bg-white px-6 py-12 sm:rounded-lg sm:px-12">
           <form
             noValidate={true}
-            className="space-y-6"
+            className="space-y-5"
             onSubmit={handleSubmit(onSubmit)}
           >
             <div>
@@ -65,7 +71,7 @@ export default function Register({ redirectMethod }: PasswordSignInProps) {
                 />
                 {errors.email && (
                   <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                    <HiExclamationCircle
+                    <MdErrorOutline
                       className="h-5 w-5 text-red-500"
                       aria-hidden="true"
                     />
@@ -95,7 +101,7 @@ export default function Register({ redirectMethod }: PasswordSignInProps) {
                 />
                 {errors.password && (
                   <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                    <HiExclamationCircle
+                    <MdErrorOutline
                       className="h-5 w-5 text-red-500"
                       aria-hidden="true"
                     />
@@ -115,45 +121,27 @@ export default function Register({ redirectMethod }: PasswordSignInProps) {
 
             <div>
               {isSubmitting ? (
-                <ButtonLoading page="register" />
+                <div className="mb-4">
+                  <ButtonLoading page="Sign up" />
+                </div>
               ) : (
-                <Button type="submit" className="w-full leading-6">
+                <Button type="submit" className="w-full leading-6 mb-4">
                   Sign up
                 </Button>
               )}
-            </div>
-          </form>
-
-          <div>
-            <div className="relative mt-8">
-              <div
-                aria-hidden="true"
-                className="absolute inset-0 flex items-center"
-              >
-                <div className="w-full border-t border-gray-200" />
-              </div>
-              <div className="relative flex justify-center text-sm font-medium leading-6">
-                <span className="bg-white px-6 text-gray-900">
-                  Or continue with
-                </span>
-              </div>
-            </div>
-
-            <div className="mt-6 grid grid-cols-2 gap-4">
               <OauthSignIn />
             </div>
-          </div>
+          </form>
+          <p className="mt-8 text-center text-sm text-gray-500 font-normal">
+            Already have an account?{' '}
+            <Link
+              href="/login"
+              className="font-semibold leading-6 text-brand-600 hover:text-brand-700 transition-colors"
+            >
+              Sign in
+            </Link>
+          </p>
         </div>
-
-        <p className="mt-10 text-center text-sm text-gray-500">
-          Already have an account?{' '}
-          <Link
-            href="/login"
-            className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
-          >
-            Sign in
-          </Link>
-        </p>
       </div>
     </>
   );

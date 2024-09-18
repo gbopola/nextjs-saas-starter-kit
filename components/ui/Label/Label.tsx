@@ -15,4 +15,4 @@ export default function Label({ className, htmlFor, ...props }: LabelProps) {
   );
 }
 
-const labelVariants = cva('block text-sm font-medium leading-6 text-gray-900');
+const labelVariants = cva('block text-sm font-medium leading-5 text-gray-700');

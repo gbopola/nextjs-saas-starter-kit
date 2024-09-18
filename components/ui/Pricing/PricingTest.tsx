@@ -66,7 +66,7 @@ export default function PricingTest() {
     <div className="bg-white py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-4xl text-center">
-          <h2 className="text-base font-semibold leading-7 text-indigo-600">
+          <h2 className="text-base font-semibold leading-7 text-brand-600">
             Pricing
           </h2>
           <p className="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
@@ -92,7 +92,7 @@ export default function PricingTest() {
                 value={option}
                 className={({ checked }) =>
                   classNames(
-                    checked ? 'bg-indigo-600 text-white' : 'text-gray-500',
+                    checked ? 'bg-brand-600 text-white' : 'text-gray-500',
                     'cursor-pointer rounded-full px-2.5 py-1'
                   )
                 }
@@ -108,7 +108,7 @@ export default function PricingTest() {
               key={tier.id}
               className={classNames(
                 tier.mostPopular
-                  ? 'ring-2 ring-indigo-600'
+                  ? 'ring-2 ring-brand-600'
                   : 'ring-1 ring-gray-200',
                 'rounded-3xl p-8 xl:p-10'
               )}
@@ -117,14 +117,14 @@ export default function PricingTest() {
                 <h3
                   id={tier.id}
                   className={classNames(
-                    tier.mostPopular ? 'text-indigo-600' : 'text-gray-900',
+                    tier.mostPopular ? 'text-brand-600' : 'text-gray-900',
                     'text-lg font-semibold leading-8'
                   )}
                 >
                   {tier.name}
                 </h3>
                 {tier.mostPopular ? (
-                  <p className="rounded-full bg-indigo-600/10 px-2.5 py-1 text-xs font-semibold leading-5 text-indigo-600">
+                  <p className="rounded-full bg-brand-600/10 px-2.5 py-1 text-xs font-semibold leading-5 text-brand-600">
                     Most popular
                   </p>
                 ) : null}
@@ -145,9 +145,9 @@ export default function PricingTest() {
                 aria-describedby={tier.id}
                 className={classNames(
                   tier.mostPopular
-                    ? 'bg-indigo-600 text-white shadow-sm hover:bg-indigo-500'
-                    : 'text-indigo-600 ring-1 ring-inset ring-indigo-200 hover:ring-indigo-300',
-                  'mt-6 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
+                    ? 'bg-brand-600 text-white shadow-sm hover:bg-indigo-500'
+                    : 'text-brand-600 ring-1 ring-inset ring-indigo-200 hover:ring-indigo-300',
+                  'mt-6 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600'
                 )}
               >
                 Buy plan
@@ -159,7 +159,7 @@ export default function PricingTest() {
                 {tier.features.map((feature) => (
                   <li key={feature} className="flex gap-x-3">
                     <HiCheck
-                      className="h-6 w-5 flex-none text-indigo-600"
+                      className="h-6 w-5 flex-none text-brand-600"
                       aria-hidden="true"
                     />
                     {feature}

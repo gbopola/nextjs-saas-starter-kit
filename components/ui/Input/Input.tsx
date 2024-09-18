@@ -24,13 +24,12 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 );
 
 const inputVariants = cva(
-  'block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset transition sm:text-sm sm:leading-6',
+  'block w-full rounded-lg border-0 py-2.5 px-3.5 text-gray-900 ring-1 text-base ring-inset ring-gray-300 placeholder:text-gray-500 focus:ring-2 focus:ring-inset transition shadow-sm',
   {
     variants: {
       variant: {
-        default: 'focus:ring-indigo-600',
-        error:
-          'ring-red-300 focus:ring-red-500 focus:ring-1 placeholder:text-red-400'
+        default: 'focus:ring-brand-600',
+        error: 'ring-red-300 focus:ring-red-500 focus:ring-2'
       }
     },
     defaultVariants: {

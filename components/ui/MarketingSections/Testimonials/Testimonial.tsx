@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 const testimonials = [
   // More testimonials...
   {
@@ -88,7 +90,7 @@ export default function Testimonial() {
     <div className="bg-white py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-xl text-center">
-          <h2 className="text-lg font-semibold leading-8 tracking-tight text-indigo-600">
+          <h2 className="text-lg font-semibold leading-8 tracking-tight text-brand-600">
             Testimonials
           </h2>
           <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
@@ -107,8 +109,10 @@ export default function Testimonial() {
                     <p>{`“${testimonial.body}”`}</p>
                   </blockquote>
                   <figcaption className="mt-6 flex items-center gap-x-4">
-                    <img
-                      className="h-10 w-10 rounded-full bg-gray-50"
+                    <Image
+                      height={10}
+                      width={10}
+                      className="rounded-full bg-gray-50"
                       src={testimonial.author.imageUrl}
                       alt=""
                     />

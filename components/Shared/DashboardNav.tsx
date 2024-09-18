@@ -4,9 +4,11 @@ import { classNames, currentPath } from '@/utils/helpers';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Logo from './Logo';
+import { useEffect } from 'react';
 
 export default function DashboardNav() {
   const pathname = usePathname();
+
   return (
     <>
       {/* Static sidebar for desktop */}
@@ -14,7 +16,7 @@ export default function DashboardNav() {
         {/* Sidebar component, swap this element with another sidebar if you like */}
         <div className="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6 pb-4">
           <div className="flex h-16 shrink-0 items-center">
-            <Logo height={8} />
+            <Logo />
           </div>
           <nav className="flex flex-1 flex-col">
             <ul role="list" className="flex flex-1 flex-col gap-y-7">
@@ -26,8 +28,8 @@ export default function DashboardNav() {
                         href={item.href}
                         className={classNames(
                           currentPath(item.href) === currentPath(pathname)
-                            ? 'bg-gray-50 text-indigo-600'
-                            : 'text-gray-700 hover:bg-gray-50 hover:text-indigo-600',
+                            ? 'bg-gray-50 text-brand-600'
+                            : 'text-gray-700 hover:bg-gray-50 hover:text-brand-600',
                           'group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6'
                         )}
                       >
@@ -35,8 +37,8 @@ export default function DashboardNav() {
                           aria-hidden="true"
                           className={classNames(
                             currentPath(item.href) === currentPath(pathname)
-                              ? 'text-indigo-600'
-                              : 'text-gray-400 group-hover:text-indigo-600',
+                              ? 'text-brand-600'
+                              : 'text-gray-400 group-hover:text-brand-600',
                             'h-6 w-6 shrink-0'
                           )}
                         />
@@ -49,11 +51,11 @@ export default function DashboardNav() {
               {/* <li className="mt-auto">
                 <a
                   href="#"
-                  className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50 hover:text-indigo-600"
+                  className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50 hover:text-brand-600"
                 >
                   <HiCog6Tooth
                     aria-hidden="true"
-                    className="h-6 w-6 shrink-0 text-gray-400 group-hover:text-indigo-600"
+                    className="h-6 w-6 shrink-0 text-gray-400 group-hover:text-brand-600"
                   />
                   Settings
                 </a>
