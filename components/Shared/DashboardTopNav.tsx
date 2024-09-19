@@ -16,7 +16,7 @@ export default function DashboardTopNav() {
       <div className="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
         <DashboardSearch />
         <div className="flex items-center gap-x-4 lg:gap-x-6">
-          <DashboardNotifications />
+          {/* <DashboardNotifications /> */}
 
           {/* Separator */}
           <div

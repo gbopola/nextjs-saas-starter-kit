@@ -12,7 +12,7 @@ export default function OauthSignIn() {
   return (
     <>
       <Button
-        className=" w-full text-base font-semibold leading-6 bg-transparent text-gray-700 border border-gray-300 hover:bg-gray-50 focus-visible:ring-2"
+        className=" w-full text-base font-semibold leading-6 bg-transparent text-gray-700 border border-gray-300 hover:bg-gray-50 focus-visible:outline-brand-600"
         onClick={() => handleSubmit('google')}
       >
         <FcGoogle className="mr-3 w-6 h-6" />

@@ -46,16 +46,16 @@ export default function Login({ redirectMethod }: PasswordSignInProps) {
         <h2 className="mt-6 text-center sm:text-3xl text-2xl font-semibold text-gray-900 leading-9">
           Log in to your account
         </h2>
-        <p className="text-center mt-3 text-gray-600">
+        <p className="text-center mt-3 text-gray-600 leading-6">
           Welcome back! Please enter your details.
         </p>
       </div>
 
       <div className="sm:mx-auto sm:w-full sm:max-w-[480px]">
-        <div className="bg-white px-6 py-12 sm:rounded-lg sm:px-12">
+        <div className="bg-white px-6 py-12 sm:px-12">
           <form
             noValidate={true}
-            className="space-y-5"
+            className="space-y-6"
             onSubmit={handleSubmit(onSubmit)}
           >
             <div>
@@ -97,6 +97,7 @@ export default function Login({ redirectMethod }: PasswordSignInProps) {
                   id="password"
                   name="password"
                   type="password"
+                  placeholder="••••••"
                   variant={errors.password && 'error'}
                 />
                 {errors.password && (
@@ -130,15 +131,13 @@ export default function Login({ redirectMethod }: PasswordSignInProps) {
               </div>
             </div>
             <div>
-              {isSubmitting ? (
-                <div className="mb-4">
-                  <ButtonLoading page="Sign in" />
-                </div>
-              ) : (
-                <Button type="submit" className="w-full leading-6 mb-4">
-                  Sign in
-                </Button>
-              )}
+              <Button
+                type="submit"
+                loading={isSubmitting}
+                className="w-full mb-4"
+              >
+                Sign in
+              </Button>
               <OauthSignIn />
             </div>
           </form>

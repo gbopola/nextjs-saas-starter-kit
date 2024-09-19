@@ -43,7 +43,7 @@ export const updatePasswordSchema = z
       .min(6, { message: 'Password must be at least 6 characters.' }),
     confirmPassword: z.string()
   })
-  .refine((data) => data.password !== data.confirmPassword, {
-    path: ['confirmPassword'], // The field to attach the error message to
-    message: 'Passwords do not match.'
+  .refine((data) => data.password === data.confirmPassword, {
+    message: 'Passwords do not match.',
+    path: ['confirmPassword'] // The field to attach the error message to
   });

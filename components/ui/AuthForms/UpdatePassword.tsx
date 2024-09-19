@@ -11,6 +11,7 @@ import Input from '../Input';
 import { HiExclamationCircle } from 'react-icons/hi2';
 import { updatePasswordSchema } from '@/validations/auth';
 import { Logo } from '@/components/Shared';
+import { MdErrorOutline } from 'react-icons/md';
 
 interface UpdatePasswordProps {
   redirectMethod: string;
@@ -38,14 +39,19 @@ export default function UpdatePassword({
   return (
     <>
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <Logo />
-        <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+        <div className="flex justify-center items-center">
+          <Logo />
+        </div>
+        <h2 className="mt-6 text-center sm:text-3xl text-2xl font-semibold text-gray-900 leading-9">
           Reset your password
         </h2>
+        <p className="text-center mt-3 text-gray-600 leading-6">
+          Enter your new password to reset your password.
+        </p>
       </div>
 
-      <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
-        <div className="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
+      <div className="sm:mx-auto sm:w-full sm:max-w-[480px]">
+        <div className="bg-white px-6 py-12 sm:px-12">
           <form
             noValidate={true}
             className="space-y-6"
@@ -53,18 +59,18 @@ export default function UpdatePassword({
           >
             <div>
               <Label htmlFor="password">Password</Label>
-              <div className="relative mt-2 rounded-md shadow-sm">
+              <div className="relative mt-2">
                 <Input
                   {...register('password')}
                   id="password"
                   name="password"
                   type="password"
-                  placeholder="you@example.com"
+                  placeholder="••••••"
                   variant={errors.password && 'error'}
                 />
                 {errors.password && (
                   <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                    <HiExclamationCircle
+                    <MdErrorOutline
                       className="h-5 w-5 text-red-500"
                       aria-hidden="true"
                     />
@@ -83,18 +89,18 @@ export default function UpdatePassword({
             </div>
             <div>
               <Label htmlFor="confirmPassword">Confirm Password</Label>
-              <div className="relative mt-2 rounded-md shadow-sm">
+              <div className="relative mt-2">
                 <Input
                   {...register('confirmPassword')}
                   id="confirmPassword"
-                  name="password"
+                  name="confirmPassword"
                   type="password"
-                  placeholder="you@example.com"
+                  placeholder="••••••"
                   variant={errors.confirmPassword && 'error'}
                 />
                 {errors.confirmPassword && (
                   <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                    <HiExclamationCircle
+                    <MdErrorOutline
                       className="h-5 w-5 text-red-500"
                       aria-hidden="true"
                     />
@@ -113,12 +119,8 @@ export default function UpdatePassword({
             </div>
 
             <div>
-              <Button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full py-1.5 leading-6"
-              >
-                Send link to email
+              <Button type="submit" loading={isSubmitting} className="w-full">
+                Reset password
               </Button>
             </div>
           </form>

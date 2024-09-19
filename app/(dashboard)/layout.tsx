@@ -33,9 +33,9 @@ export default async function DashboardLayout({
         <DashboardMobileNav />
         <DashboardNav />
         <div className="lg:pl-72">
-          <div>
+          {/* <div>
             <DashboardTopNav />
-          </div>
+          </div> */}
           <main className="py-10">
             <div className="px-4 sm:px-6 lg:px-8">{children}</div>
           </main>

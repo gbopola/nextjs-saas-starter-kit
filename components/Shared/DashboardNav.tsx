@@ -28,19 +28,14 @@ export default function DashboardNav() {
                         href={item.href}
                         className={classNames(
                           currentPath(item.href) === currentPath(pathname)
-                            ? 'bg-gray-50 text-brand-600'
-                            : 'text-gray-700 hover:bg-gray-50 hover:text-brand-600',
-                          'group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6'
+                            ? 'bg-gray-50 text-gray-800 font-semibold'
+                            : 'text-gray-700 hover:bg-gray-50 hover:text-gray-800',
+                          'group flex gap-x-3 rounded-md p-2 text-base font-semibold leading-6'
                         )}
                       >
                         <item.icon
                           aria-hidden="true"
-                          className={classNames(
-                            currentPath(item.href) === currentPath(pathname)
-                              ? 'text-brand-600'
-                              : 'text-gray-400 group-hover:text-brand-600',
-                            'h-6 w-6 shrink-0'
-                          )}
+                          className="h-6 w-6 shrink-0 text-gray-500"
                         />
                         {item.name}
                       </Link>

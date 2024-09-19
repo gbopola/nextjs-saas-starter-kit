@@ -69,7 +69,7 @@ export default function PricingTest() {
           <h2 className="text-base font-semibold leading-7 text-brand-600">
             Pricing
           </h2>
-          <p className="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
+          <p className="mt-2 text-4xl font-bold  text-gray-900 sm:text-5xl">
             Pricing plans for teams of&nbsp;all&nbsp;sizes
           </p>
         </div>
@@ -133,7 +133,7 @@ export default function PricingTest() {
                 {tier.description}
               </p>
               <p className="mt-6 flex items-baseline gap-x-1">
-                <span className="text-4xl font-bold tracking-tight text-gray-900">
+                <span className="text-4xl font-bold  text-gray-900">
                   {tier.price[frequency.value as keyof typeof tier.price]}
                 </span>
                 <span className="text-sm font-semibold leading-6 text-gray-600">

@@ -46,7 +46,7 @@ export default function Register({ redirectMethod }: PasswordSignInProps) {
         <h2 className="mt-6 text-center sm:text-3xl text-2xl font-semibold text-gray-900 leading-9">
           Register an account
         </h2>
-        <p className="text-center mt-3 text-gray-600">
+        <p className="text-center mt-3 text-gray-600 leading-6">
           Please enter your details to create an account.
         </p>
       </div>
@@ -55,7 +55,7 @@ export default function Register({ redirectMethod }: PasswordSignInProps) {
         <div className="bg-white px-6 py-12 sm:rounded-lg sm:px-12">
           <form
             noValidate={true}
-            className="space-y-5"
+            className="space-y-6"
             onSubmit={handleSubmit(onSubmit)}
           >
             <div>
@@ -66,7 +66,7 @@ export default function Register({ redirectMethod }: PasswordSignInProps) {
                   id="email"
                   name="email"
                   type="email"
-                  placeholder="you@example.com"
+                  placeholder="Enter your email"
                   variant={errors.email && 'error'}
                 />
                 {errors.email && (
@@ -97,6 +97,7 @@ export default function Register({ redirectMethod }: PasswordSignInProps) {
                   id="password"
                   name="password"
                   type="password"
+                  placeholder="••••••"
                   variant={errors.password && 'error'}
                 />
                 {errors.password && (
@@ -120,15 +121,13 @@ export default function Register({ redirectMethod }: PasswordSignInProps) {
             </div>
 
             <div>
-              {isSubmitting ? (
-                <div className="mb-4">
-                  <ButtonLoading page="Sign up" />
-                </div>
-              ) : (
-                <Button type="submit" className="w-full leading-6 mb-4">
-                  Sign up
-                </Button>
-              )}
+              <Button
+                type="submit"
+                loading={isSubmitting}
+                className="w-full mb-4"
+              >
+                Sign up
+              </Button>
               <OauthSignIn />
             </div>
           </form>

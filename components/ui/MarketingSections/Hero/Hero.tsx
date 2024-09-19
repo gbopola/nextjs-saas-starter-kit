@@ -22,7 +22,7 @@ export default function Hero() {
                     </span>
                   </a> */}
                 </div>
-                <h1 className="mt-10 text-4xl font-extrabold tracking-tight text-gray-900 sm:text-6xl">
+                <h1 className="mt-10 text-4xl font-extrabold  text-gray-900 sm:text-6xl">
                   Streamline your projects
                 </h1>
                 <p className="mt-6 text-lg leading-8 text-gray-500">

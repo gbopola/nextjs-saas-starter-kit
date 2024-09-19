@@ -8,9 +8,9 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
 import Label from '../Label';
 import Input from '../Input';
-import { HiExclamationCircle } from 'react-icons/hi2';
 import { forgotPasswordSchema } from '@/validations/auth';
 import { Logo } from '@/components/Shared';
+import { MdErrorOutline } from 'react-icons/md';
 
 // Define prop type with allowEmail boolean
 interface ForgotPasswordProps {
@@ -41,14 +41,20 @@ export default function ForgotPassword({
   return (
     <>
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <Logo />
-        <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+        <div className="flex justify-center items-center">
+          <Logo />
+        </div>
+        <h2 className="mt-6 text-center sm:text-3xl text-2xl font-semibold text-gray-900 leading-9">
           Reset your password
         </h2>
+        <p className="text-center mt-3 text-gray-600 leading-6">
+          Enter your email address and we will send you a link to reset your
+          password.
+        </p>
       </div>
 
-      <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
-        <div className="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
+      <div className="sm:mx-auto sm:w-full sm:max-w-[480px]">
+        <div className="bg-white px-6 py-12 sm:px-12">
           <form
             noValidate={true}
             className="space-y-6"
@@ -56,7 +62,7 @@ export default function ForgotPassword({
           >
             <div>
               <Label htmlFor="email">Email</Label>
-              <div className="relative mt-2 rounded-md shadow-sm">
+              <div className="relative mt-2">
                 <Input
                   {...register('email')}
                   id="email"
@@ -67,7 +73,7 @@ export default function ForgotPassword({
                 />
                 {errors.email && (
                   <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                    <HiExclamationCircle
+                    <MdErrorOutline
                       className="h-5 w-5 text-red-500"
                       aria-hidden="true"
                     />
@@ -88,8 +94,9 @@ export default function ForgotPassword({
             <div>
               <Button
                 type="submit"
-                disabled={isSubmitting || disableButton}
-                className="w-full leading-6"
+                disabled={disableButton}
+                loading={isSubmitting}
+                className="w-full"
               >
                 Send link to email
               </Button>

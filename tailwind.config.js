@@ -29,10 +29,12 @@ module.exports = {
         },
         gray: {
           50: 'var(--color-gray-50)',
+          200: 'var(--color-gray-200)',
           300: 'var(--color-gray-300)',
           500: 'var(--color-gray-500)',
           600: 'var(--color-gray-600)',
           700: 'var(--color-gray-700)',
+          800: 'var(--color-gray-800)',
           900: 'var(--color-gray-900)'
         }
       },
