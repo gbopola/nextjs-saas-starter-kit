@@ -4,7 +4,7 @@ import { classNames, currentPath } from '@/utils/helpers';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Logo from './Logo';
-import { useEffect } from 'react';
+import Image from 'next/image';
 
 export default function DashboardNav() {
   const pathname = usePathname();
@@ -33,9 +33,13 @@ export default function DashboardNav() {
                           'group flex gap-x-3 rounded-md p-2 text-base font-semibold leading-6'
                         )}
                       >
-                        <item.icon
+                        <Image
+                          src={item.icon}
+                          alt={item.name + ' icon'}
+                          width={6}
+                          height={6}
                           aria-hidden="true"
-                          className="h-6 w-6 shrink-0 text-gray-500"
+                          className="shrink-0 text-gray-500"
                         />
                         {item.name}
                       </Link>
@@ -44,8 +48,8 @@ export default function DashboardNav() {
                 </ul>
               </li>
               {/* <li className="mt-auto">
-                <a
-                  href="#"
+                <Link
+                  href="/settings"
                   className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50 hover:text-brand-600"
                 >
                   <HiCog6Tooth
@@ -53,7 +57,7 @@ export default function DashboardNav() {
                     className="h-6 w-6 shrink-0 text-gray-400 group-hover:text-brand-600"
                   />
                   Settings
-                </a>
+                </Link>
               </li> */}
             </ul>
           </nav>

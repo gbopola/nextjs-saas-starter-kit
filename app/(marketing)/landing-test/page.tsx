@@ -10,8 +10,20 @@ import {
   SocialProof,
   Testimonials
 } from '@/components/ui/MarketingSections';
+import {
+  getProducts,
+  getSubscription,
+  getUser
+} from '@/utils/supabase/queries';
+import { createClient } from '@/utils/supabase/server';
 
-export default function Example() {
+export default async function Example() {
+  const supabase = createClient();
+  const [user, products, subscription] = await Promise.all([
+    getUser(supabase),
+    getProducts(supabase),
+    getSubscription(supabase)
+  ]);
   return (
     <div>
       <Hero />
@@ -20,7 +32,11 @@ export default function Example() {
       <FeatureTwo />
       <FeatureThree />
       <Testimonials />
-      <PricingTest />
+      <PricingTest
+        user={user}
+        products={products ?? []}
+        subscription={subscription}
+      />
       <FAQ />
       <CTA />
       <Footer />

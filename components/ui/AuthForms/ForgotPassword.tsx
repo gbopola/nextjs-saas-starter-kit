@@ -11,6 +11,8 @@ import Input from '../Input';
 import { forgotPasswordSchema } from '@/validations/auth';
 import { Logo } from '@/components/Shared';
 import { MdErrorOutline } from 'react-icons/md';
+import Link from 'next/link';
+import { FiArrowLeft } from 'react-icons/fi';
 
 // Define prop type with allowEmail boolean
 interface ForgotPasswordProps {
@@ -68,7 +70,7 @@ export default function ForgotPassword({
                   id="email"
                   name="email"
                   type="email"
-                  placeholder="you@example.com"
+                  placeholder="Enter your email"
                   variant={errors.email && 'error'}
                 />
                 {errors.email && (
@@ -102,6 +104,15 @@ export default function ForgotPassword({
               </Button>
             </div>
           </form>
+          <Link
+            href="/login"
+            className="flex font-semibold items-center mt-7 justify-center text-sm text-gray-600"
+          >
+            <span>
+              <FiArrowLeft className="mr-2" />
+            </span>
+            Back to log in
+          </Link>
         </div>
       </div>
     </>

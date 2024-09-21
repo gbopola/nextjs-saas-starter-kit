@@ -1,8 +1,4 @@
-import {
-  DashboardMobileNav,
-  DashboardNav,
-  DashboardTopNav
-} from '@/components/Shared';
+import { DashboardMobileNav, DashboardNav } from '@/components/Shared';
 import { getUser } from '@/utils/supabase/queries';
 import { createClient } from '@/utils/supabase/server';
 import type { Metadata } from 'next';

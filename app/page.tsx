@@ -5,6 +5,7 @@ import {
   getSubscription,
   getUser
 } from '@/utils/supabase/queries';
+import { PricingTest } from '@/components/ui/MarketingSections';
 
 export default async function PricingPage() {
   const supabase = createClient();
@@ -15,7 +16,7 @@ export default async function PricingPage() {
   ]);
 
   return (
-    <Pricing
+    <PricingTest
       user={user}
       products={products ?? []}
       subscription={subscription}

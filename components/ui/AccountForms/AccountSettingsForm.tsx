@@ -78,7 +78,9 @@ export default function AccountSettingsForm({
           </p>
         )}
       </div>
-      <Button type="submit">Save changes</Button>
+      <Button type="submit" loading={isSubmitting}>
+        Save changes
+      </Button>
     </form>
   );
 }
