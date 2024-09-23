@@ -24,9 +24,9 @@ export default function DashboardTopNav() {
             className="hidden lg:block lg:h-6 lg:w-px lg:bg-gray-200"
           />
 
-          <DashboardProfileDropdown
+          {/* <DashboardProfileDropdown
             userNavigation={dashboardConfig.userNavigation}
-          />
+          /> */}
         </div>
       </div>
     </div>
