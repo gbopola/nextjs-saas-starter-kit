@@ -13,6 +13,8 @@ import { Logo } from '@/components/Shared';
 import { MdErrorOutline } from 'react-icons/md';
 import Link from 'next/link';
 import { FiArrowLeft } from 'react-icons/fi';
+import Image from 'next/image';
+import KeyIcon from '@/public/key-01.svg';
 
 // Define prop type with allowEmail boolean
 interface ForgotPasswordProps {
@@ -43,15 +45,14 @@ export default function ForgotPassword({
   return (
     <>
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="flex justify-center items-center">
-          <Logo />
+        <div className="w-14 h-14 block mx-auto flex items-center justify-center border border-gray-200 rounded-xl shadow-xs">
+          <Image src={KeyIcon} alt="key icon" width={28} height={28} />
         </div>
         <h2 className="mt-6 text-center sm:text-3xl text-2xl font-semibold text-gray-900 leading-9">
-          Reset your password
+          Forgot password?
         </h2>
         <p className="text-center mt-3 text-gray-600 leading-6">
-          Enter your email address and we will send you a link to reset your
-          password.
+          No worries, we'll send you reset instructions.
         </p>
       </div>
 

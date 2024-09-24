@@ -13,6 +13,7 @@ import useStore from '@/store/store';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Logo from './Logo';
+import Image from 'next/image';
 
 export default function DashboardMobileNav() {
   const { sidebarOpen, setSidebarOpen } = useStore();
@@ -27,7 +28,7 @@ export default function DashboardMobileNav() {
     >
       <DialogBackdrop
         transition
-        className="fixed inset-0 bg-gray-900/80 transition-opacity duration-300 ease-linear data-[closed]:opacity-0"
+        className="fixed inset-0 bg-black/60 transition-opacity duration-300 ease-linear data-[closed]:opacity-0"
       />
 
       <div className="fixed inset-0 flex">
@@ -67,9 +68,13 @@ export default function DashboardMobileNav() {
                             'group flex gap-x-3 rounded-md p-2 text-base font-semibold leading-6'
                           )}
                         >
-                          <item.icon
+                          <Image
+                            src={item.icon}
+                            alt={item.name + ' icon'}
+                            width={24}
+                            height={24}
                             aria-hidden="true"
-                            className="h-6 w-6 shrink-0 text-gray-500"
+                            className="shrink-0 text-red-500"
                           />
                           {item.name}
                         </Link>

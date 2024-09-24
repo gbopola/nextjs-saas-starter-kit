@@ -132,9 +132,20 @@ export const getErrorRedirect = (
     arbitraryParams
   );
 
+// tailwind css classnames
 export function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ');
 }
 
 //  get last part of pathname
 export const currentPath = (pathname: string) => pathname.split('/').pop();
+
+// convert date to human readable format
+export const formatDate = (input: string | number): string => {
+  const date = new Date(input);
+  return date.toLocaleDateString('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric'
+  });
+};

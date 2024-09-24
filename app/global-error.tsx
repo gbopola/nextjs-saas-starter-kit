@@ -15,7 +15,7 @@ export default function GlobalError() {
         </p>
         <div className="mt-10 flex items-center justify-center gap-x-6">
           <Link href="/">
-            <Button>Go back home</Button>
+            <Button size="sm">Go back home</Button>
           </Link>
           <a
             href={`mailto:${process.env.COMPANY_EMAIL}`}

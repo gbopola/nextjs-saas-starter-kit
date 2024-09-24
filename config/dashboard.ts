@@ -22,7 +22,7 @@ export const dashboardConfig = {
     },
     {
       name: 'Support',
-      href: 'mailto:opeafolabi5@gmail.com',
+      href: `mailto:${process.env.COMPANY_EMAIL}`,
       icon: SupportIcon
     }
   ]

@@ -1,4 +1,8 @@
-import { DashboardMobileNav, DashboardNav } from '@/components/Shared';
+import {
+  DashboardMobileNav,
+  DashboardNav,
+  DashboardTopNav
+} from '@/components/Shared';
 import { getUser } from '@/utils/supabase/queries';
 import { createClient } from '@/utils/supabase/server';
 import type { Metadata } from 'next';
@@ -29,9 +33,9 @@ export default async function DashboardLayout({
         <DashboardMobileNav />
         <DashboardNav />
         <div className="lg:pl-72">
-          {/* <div>
+          <div>
             <DashboardTopNav />
-          </div> */}
+          </div>
           <main className="py-10">
             <div className="px-4 sm:px-6 lg:px-8">{children}</div>
           </main>

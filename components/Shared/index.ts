@@ -8,3 +8,4 @@ export { default as DashboardProfileDropdown } from './DashboardProfileDropdown'
 export { default as DashboardTopNav } from './DashboardTopNav';
 export { default as Logo } from './Logo';
 export { default as DashboardHeader } from './DashboardHeader';
+export { default as LoadingSpinner } from './LoadingSpinner';

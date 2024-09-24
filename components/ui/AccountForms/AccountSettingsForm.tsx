@@ -9,6 +9,7 @@ import { handleRequest } from '@/utils/auth-helpers/client';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { AccountSettingsSchema } from '@/validations/auth';
+import { getRedirectMethod } from '@/utils/auth-helpers/settings';
 
 // Define prop type with allowEmail boolean
 type AccountSettingsProps = {
@@ -22,7 +23,7 @@ export default function AccountSettingsForm({
   userEmail,
   userName
 }: AccountSettingsProps) {
-  const router = useRouter();
+  const router = getRedirectMethod() === 'client' ? useRouter() : null;
 
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
     await handleRequest(data, updateAccountDetails, router);
@@ -37,15 +38,15 @@ export default function AccountSettingsForm({
   });
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="mb-4">
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+      <div>
         <Label htmlFor="name">Name</Label>
         <Input
           {...register('name')}
           id="name"
           name="name"
           type="text"
-          placeholder="Mark Evans"
+          placeholder="Enter your name"
           defaultValue={userName}
           variant={errors.name && 'error'}
           className="w-1/3 mt-2"
@@ -56,7 +57,7 @@ export default function AccountSettingsForm({
           </p>
         )}
       </div>
-      <div className="mb-4">
+      <div>
         <Label htmlFor="email">Email</Label>
         <Input
           {...register('email')}

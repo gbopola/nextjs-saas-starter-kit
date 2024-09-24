@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Button from '@/components/ui/Button';
 import type { Tables } from '@/types_db';
 import { getStripe } from '@/utils/stripe/client';
-import { checkoutWithStripe } from '@/utils/stripe/server';
+import { checkoutWithStripe, createStripePortal } from '@/utils/stripe/server';
 import { getErrorRedirect } from '@/utils/helpers';
 import { User } from '@supabase/supabase-js';
 import { useRouter, usePathname } from 'next/navigation';
@@ -79,6 +79,13 @@ export default function Pricing({ user, products, subscription }: Props) {
     stripe?.redirectToCheckout({ sessionId });
 
     setPriceIdLoading(undefined);
+  };
+
+  const handleStripePortalRequest = async (price: Price) => {
+    setPriceIdLoading(price.id);
+    const redirectUrl = await createStripePortal(currentPath);
+    setPriceIdLoading(undefined);
+    return router.push(redirectUrl);
   };
 
   return (
@@ -161,7 +168,11 @@ export default function Pricing({ user, products, subscription }: Props) {
                 <Button
                   type="button"
                   loading={priceIdLoading === price.id}
-                  onClick={() => handleStripeCheckout(price)}
+                  onClick={
+                    subscription
+                      ? () => handleStripePortalRequest(price)
+                      : () => handleStripeCheckout(price)
+                  }
                   size="sm"
                   className="mt-6 w-full"
                 >

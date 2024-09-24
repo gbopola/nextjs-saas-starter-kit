@@ -36,10 +36,10 @@ export default function DashboardNav() {
                         <Image
                           src={item.icon}
                           alt={item.name + ' icon'}
-                          width={6}
-                          height={6}
+                          width={24}
+                          height={24}
                           aria-hidden="true"
-                          className="shrink-0 text-gray-500"
+                          className="shrink-0 text-red-500"
                         />
                         {item.name}
                       </Link>
