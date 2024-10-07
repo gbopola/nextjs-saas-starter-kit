@@ -4,7 +4,12 @@ import { cva, type VariantProps } from 'class-variance-authority';
 
 import { cn } from '@/utils/cn';
 import { LuX } from 'react-icons/lu';
-import { HiXMark } from 'react-icons/hi2';
+import {
+  HiCheckCircle,
+  HiExclamationCircle,
+  HiXCircle,
+  HiXMark
+} from 'react-icons/hi2';
 
 const ToastProvider = ToastPrimitives.Provider;
 
@@ -40,17 +45,41 @@ const toastVariants = cva(
   }
 );
 
+const ToastStatusIcon = ({
+  variant
+}: {
+  variant: 'default' | 'destructive';
+}) => {
+  const getIcon = () => {
+    switch (variant) {
+      case 'destructive':
+        return <HiExclamationCircle className="h-6 w-6 text-white" />;
+      default:
+        return (
+          <HiCheckCircle className="h-6 w-6 text-green-500 dark:text-green-900" />
+        );
+    }
+  };
+
+  return <div className="flex-shrink-0">{getIcon()}</div>;
+};
+
 const Toast = React.forwardRef<
   React.ElementRef<typeof ToastPrimitives.Root>,
   React.ComponentPropsWithoutRef<typeof ToastPrimitives.Root> &
     VariantProps<typeof toastVariants>
->(({ className, variant, ...props }, ref) => {
+>(({ className = '', variant, ...props }, ref) => {
+  const safeVariant: 'default' | 'destructive' = variant ?? 'default';
+
   return (
     <ToastPrimitives.Root
       ref={ref}
-      className={cn(toastVariants({ variant }), className)}
+      className={cn(toastVariants({ variant: safeVariant }), className)}
       {...props}
-    />
+    >
+      <ToastStatusIcon variant={safeVariant} />
+      {props.children}
+    </ToastPrimitives.Root>
   );
 });
 Toast.displayName = ToastPrimitives.Root.displayName;

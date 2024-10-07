@@ -9,7 +9,6 @@ import { z } from 'zod';
 import Label from '../Label';
 import Input from '../Input';
 import { forgotPasswordSchema } from '@/validations/auth';
-import { Logo } from '@/components/Shared';
 import { MdErrorOutline } from 'react-icons/md';
 import Link from 'next/link';
 import { FiArrowLeft } from 'react-icons/fi';

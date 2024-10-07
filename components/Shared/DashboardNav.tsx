@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Logo from './Logo';
 import Image from 'next/image';
-import { HiCog6Tooth } from 'react-icons/hi2';
 import SupportIcon from '@/public/life-buoy-01.svg';
 
 export default function DashboardNav() {

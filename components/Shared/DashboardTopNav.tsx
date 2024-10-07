@@ -1,9 +1,6 @@
 'use client';
-import DashboardNotifications from './DashboardNotifications';
-import DashboardProfileDropdown from './DashboardProfileDropdown';
 import DashboardSearch from './DashboardSearch';
 import HamburgerMenu from './HamburgerMenu';
-import { dashboardConfig } from '@/config/dashboard';
 
 export default function DashboardTopNav() {
   return (

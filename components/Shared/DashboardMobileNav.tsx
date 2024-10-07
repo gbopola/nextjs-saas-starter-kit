@@ -7,8 +7,7 @@ import {
   DialogPanel,
   TransitionChild
 } from '@headlessui/react';
-import { useState } from 'react';
-import { HiCog6Tooth, HiXMark } from 'react-icons/hi2';
+import { HiXMark } from 'react-icons/hi2';
 import useStore from '@/store/store';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
