@@ -14,6 +14,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Logo from './Logo';
 import Image from 'next/image';
+import SupportIcon from '@/public/life-buoy-01.svg';
 
 export default function DashboardMobileNav() {
   const { sidebarOpen, setSidebarOpen } = useStore();
@@ -80,20 +81,24 @@ export default function DashboardMobileNav() {
                         </Link>
                       </li>
                     ))}
+                    <li className="mt-auto">
+                      <a
+                        href={`mailto:${process.env.COMPANY_EMAIL}`}
+                        className="text-gray-700 hover:bg-gray-50 hover:text-gray-800 flex gap-x-3 rounded-md p-2 text-base font-semibold leading-6"
+                      >
+                        <Image
+                          src={SupportIcon}
+                          alt="Support icon"
+                          width={24}
+                          height={24}
+                          aria-hidden="true"
+                          className="shrink-0 text-red-500"
+                        />
+                        Support
+                      </a>
+                    </li>
                   </ul>
                 </li>
-                {/* <li className="mt-auto">
-                  <a
-                    href="#"
-                    className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50 hover:text-brand-600"
-                  >
-                    <HiCog6Tooth
-                      aria-hidden="true"
-                      className="h-6 w-6 shrink-0 text-gray-400 group-hover:text-brand-600"
-                    />
-                    Settings
-                  </a>
-                </li> */}
               </ul>
             </nav>
           </div>
