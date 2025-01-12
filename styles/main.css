@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+/* In a design system, besides primary and secondary colors, you can include:
+
+Tertiary: A complementary color to your primary and secondary.
+Accent: A pop color for emphasis (e.g., buttons, links).
+Neutral: A palette for backgrounds, text, and borders (shades of gray, white, or black).
+Success: Often green, used for positive feedback (e.g., success messages).
+Error: Often red, for errors or warnings.
+Warning: Often yellow or orange, for cautionary indicators.
+Info: Often blue, for informational messages.
+Hover/Focus States: Lighter or darker shades of primary/secondary for interactivity. */
+
 :root {
   --color-brand-600: #7f56d9;
   --color-brand-700: #6941c6;

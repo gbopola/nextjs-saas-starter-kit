@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { Toaster } from '@/components/ui/Toasts/toaster';
 import { PropsWithChildren, Suspense } from 'react';
 import { getURL } from '@/utils/helpers';
-import 'styles/main.css';
+import '../styles/main.css';
 import PlausibleProvider from 'next-plausible';
 import { Inter } from 'next/font/google';
 
