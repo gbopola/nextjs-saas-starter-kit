@@ -40,7 +40,7 @@ const buttonVariants = cva(
         primary:
           'bg-brand-600 hover:bg-brand-700 focus-visible:outline-brand-600',
         secondary:
-          'bg-white hover:bg-gray-50 text-gray-900 ring-1 ring-inset ring-gray-300',
+          'bg-white hover:bg-gray-50 text-heading ring-1 ring-inset ring-gray-300',
         destructive: 'bg-red-600 hover:bg-red-500 focus-visible:outline-red-600'
       },
       size: {

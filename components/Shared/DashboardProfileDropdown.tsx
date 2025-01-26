@@ -40,7 +40,7 @@ export default function DashboardProfileDropdown({
           <span className="hidden lg:flex lg:items-center">
             <span
               aria-hidden="true"
-              className="ml-4 text-sm font-semibold leading-6 text-gray-900"
+              className="ml-4 text-sm font-semibold leading-6 text-heading"
             >
               Tom Cook
             </span>
@@ -58,7 +58,7 @@ export default function DashboardProfileDropdown({
             <MenuItem key={item.name}>
               <a
                 onClick={() => handleRequest(pathObj, SignOut, router)}
-                className="block px-3 py-1 text-sm leading-6 text-gray-900 data-[focus]:bg-gray-50"
+                className="block px-3 py-1 text-sm leading-6 text-heading data-[focus]:bg-gray-50"
               >
                 {item.name}
               </a>

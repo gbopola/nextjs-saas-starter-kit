@@ -8,10 +8,10 @@ type DashboardHeaderProps = {
 const DashboardHeader = ({ title, description }: DashboardHeaderProps) => {
   return (
     <div className="mb-8">
-      <h1 className="text-3xl font-semibold leading-9 mb-2 text-gray-900">
+      <h1 className="text-3xl font-semibold leading-9 mb-2 text-heading">
         {title}
       </h1>
-      <p className="text-gray-600">{description}</p>
+      <p className="text-body">{description}</p>
     </div>
   );
 };

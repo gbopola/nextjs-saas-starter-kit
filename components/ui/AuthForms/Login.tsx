@@ -42,10 +42,10 @@ export default function Login({ redirectMethod }: PasswordSignInProps) {
         <div className="flex justify-center items-center">
           <Logo />
         </div>
-        <h2 className="mt-6 text-center sm:text-3xl text-2xl font-semibold text-gray-900 leading-9">
+        <h2 className="mt-6 text-center sm:text-3xl text-2xl font-semibold text-heading leading-9">
           Log in to your account
         </h2>
-        <p className="text-center mt-3 text-gray-600 leading-6">
+        <p className="text-center mt-3 text-body leading-6">
           Welcome back! Please enter your details.
         </p>
       </div>

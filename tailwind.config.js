@@ -22,6 +22,8 @@ module.exports = {
           600: 'var(--color-brand-600)',
           700: 'var(--color-brand-700)'
         },
+         'heading': 'var(--color-heading)',
+        'body': 'var(--color-body)',
         red: {
           300: 'var(--color-red-300)',
           500: 'var(--color-red-500)',

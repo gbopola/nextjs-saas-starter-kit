@@ -41,13 +41,13 @@ export default function UpdatePassword({
   return (
     <>
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="w-14 h-14 block mx-auto flex items-center justify-center border border-gray-200 rounded-xl shadow-xs">
+        <div className="w-14 h-14 mx-auto flex items-center justify-center border border-gray-200 rounded-xl shadow-xs">
           <Image src={LockIcon} alt="key icon" width={28} height={28} />
         </div>
-        <h2 className="mt-6 text-center sm:text-3xl text-2xl font-semibold text-gray-900 leading-9">
+        <h2 className="mt-6 text-center sm:text-3xl text-2xl font-semibold text-heading leading-9">
           Set new password
         </h2>
-        <p className="text-center mt-3 text-gray-600 leading-6">
+        <p className="text-center mt-3 text-body leading-6">
           Please enter your new password.
         </p>
       </div>
@@ -128,7 +128,7 @@ export default function UpdatePassword({
           </form>
           <Link
             href="/login"
-            className="flex font-semibold items-center mt-7 justify-center text-sm text-gray-600"
+            className="flex font-semibold items-center mt-7 justify-center text-sm text-body"
           >
             <span>
               <FiArrowLeft className="mr-2" />
